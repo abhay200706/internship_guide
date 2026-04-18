@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Internship Resources</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #F7F6F2;
+      --surface: #FFFFFF;
+      --ink: #1C1C28;
+      --ink-light: #5A5A72;
+      --accent: #2A3F7E;
+      --accent-light: #E8ECF8;
+      --border: #E2E0D8;
+      --gold: #C9972A;
+      --tag-bg: #F0EEE8;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 62px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--ink);
+      cursor: pointer;
+      letter-spacing: 0.01em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .breadcrumb {
+      font-size: 0.78rem;
+      color: var(--ink-light);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .breadcrumb .crumb {
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .breadcrumb .crumb:hover { color: var(--accent); }
+    .breadcrumb .sep { opacity: 0.4; }
+
+    /* ── PAGES ── */
+    .page { display: none; animation: fadeUp 0.4s ease; }
+    .page.active { display: block; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── HOME ── */
+    .home-hero {
+      text-align: center;
+      padding: 72px 2rem 48px;
+    }
+    .home-hero .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .home-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+    .home-hero p {
+      font-size: 1rem;
+      color: var(--ink-light);
+      max-width: 500px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--accent);
+      margin: 28px auto;
+      border-radius: 2px;
+    }
+
+    /* ── CATEGORY GRID ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem 80px;
+    }
+
+    .cat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 28px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .cat-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.25s ease;
+    }
+    .cat-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 32px rgba(42,63,126,0.10);
+      transform: translateY(-3px);
+    }
+    .cat-card:hover::before { transform: scaleY(1); }
+
+    .cat-icon {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+    .cat-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .cat-card p {
+      font-size: 0.82rem;
+      color: var(--ink-light);
+      font-weight: 300;
+    }
+    .cat-arrow {
+      position: absolute;
+      right: 22px;
+      bottom: 20px;
+      font-size: 1.1rem;
+      color: var(--accent);
+      opacity: 0;
+      transition: opacity 0.2s, right 0.2s;
+    }
+    .cat-card:hover .cat-arrow { opacity: 1; right: 18px; }
+
+    /* ── CATEGORY PAGE ── */
+    .cat-page-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 2rem 36px;
+      text-align: center;
+    }
+    .cat-page-header .tag {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .cat-page-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .cat-page-header p {
+      color: var(--ink-light);
+      font-size: 0.9rem;
+      margin-top: 8px;
+      font-weight: 300;
+    }
+
+    .sub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      max-width: 900px;
+      margin: 48px auto;
+      padding: 0 2rem 80px;
+    }
+
+    .sub-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 24px;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      text-align: center;
+    }
+    .sub-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 6px 24px rgba(42,63,126,0.09);
+      transform: translateY(-2px);
+    }
+    .sub-icon { font-size: 1.9rem; margin-bottom: 12px; }
+    .sub-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .sub-card p {
+      font-size: 0.78rem;
+      color: var(--ink-light);
+    }
+
+    /* ── PROFESSOR PAGE ── */
+    .professor-list {
+      max-width: 700px;
+      margin: 48px auto;
+      padding: 0 2rem 80px;
+    }
+    .prof-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .prof-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+    .prof-info h4 { font-size: 0.95rem; font-weight: 600; }
+    .prof-info p { font-size: 0.78rem; color: var(--ink-light); }
+    .coming-soon {
+      text-align: center;
+      padding: 60px 2rem;
+      color: var(--ink-light);
+    }
+    .coming-soon .cs-icon { font-size: 3rem; margin-bottom: 16px; }
+    .coming-soon h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem; color: var(--ink);
+    }
+    .coming-soon p { font-size: 0.88rem; margin-top: 8px; }
+
+    /* ── CONTENT PAGE ── */
+    .content-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 2rem 80px;
+    }
+    .content-header {
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .content-header .tag {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+    .content-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    /* ── RICH CONTENT STYLES ── */
+    .rich-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 36px 0 12px;
+      color: var(--ink);
+    }
+    .rich-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin: 28px 0 10px;
+      color: var(--ink);
+    }
+    .rich-content h4 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin: 20px 0 8px;
+      color: var(--ink);
+    }
+    .rich-content p {
+      font-size: 0.95rem;
+      color: var(--ink);
+      margin-bottom: 12px;
+      line-height: 1.8;
+    }
+    .rich-content ol, .rich-content ul {
+      padding-left: 24px;
+      margin-bottom: 16px;
+    }
+    .rich-content li {
+      font-size: 0.93rem;
+      color: var(--ink);
+      margin-bottom: 8px;
+      line-height: 1.75;
+    }
+    .rich-content ul li { list-style: disc; }
+    .rich-content strong { font-weight: 600; }
+    .rich-content a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: opacity 0.2s;
+    }
+    .rich-content a:hover { opacity: 0.7; }
+
+    .info-box {
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .info-box p { margin: 0; font-size: 0.9rem; }
+
+    .final-note {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 22px 24px;
+      margin-top: 32px;
+    }
+    .final-note h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--ink);
+    }
+    .final-note p { margin: 0; font-size: 0.9rem; color: var(--ink-light); }
+
+    /* ── BLANK STATE ── */
+    .blank-state {
+      text-align: center;
+      padding: 80px 2rem;
+      border: 2px dashed var(--border);
+      border-radius: 14px;
+      margin-top: 8px;
+    }
+    .blank-state .bs-icon { font-size: 2.5rem; margin-bottom: 16px; opacity: 0.5; }
+    .blank-state h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--ink-light);
+    }
+    .blank-state p { font-size: 0.85rem; color: var(--ink-light); margin-top: 8px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 24px 2rem;
+      font-size: 0.8rem;
+      color: var(--ink-light);
+    }
+    footer span { color: var(--accent); font-weight: 500; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      .home-hero { padding: 48px 1rem 32px; }
+      .card-grid { padding: 0 1rem 60px; gap: 14px; }
+      .sub-grid { padding: 0 1rem 60px; gap: 12px; }
+      .content-wrap { padding: 32px 1rem 60px; }
+      .professor-list { padding: 0 1rem 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo" onclick="goHome()">Internship <span>Resources</span></div>
+  <div class="breadcrumb" id="breadcrumb"></div>
+</nav>
+
+<!-- ══════════════ HOME PAGE ══════════════ -->
+<div class="page active" id="page-home">
+  <div class="home-hero">
+    <div class="eyebrow">IIT Delhi &bull; Placement Cell</div>
+    <h1>Internship<br/>Resources</h1>
+    <div class="divider"></div>
+    <p>Your one-stop guide to navigating the internship season — from preparation to placement.</p>
+  </div>
+
+  <div class="card-grid">
+    <div class="cat-card" onclick="openCategory('consult')">
+      <div class="cat-icon">🤝</div>
+      <h3>Consult</h3>
+      <p>Consulting internships, case prep & resources</p>
+      <div class="cat-arrow">→</div>
+    </div>
+    <div class="cat-card" onclick="openCategory('tech')">
+      <div class="cat-icon">💻</div>
+      <h3>Tech / SDE</h3>
+      <p>Software development, DSA, CP preparation</p>
+      <div class="cat-arrow">→</div>
+    </div>
+    <div class="cat-card" onclick="openCategory('quant')">
+      <div class="cat-icon">📊</div>
+      <h3>Quant</h3>
+      <p>Quantitative research, trading & finance roles</p>
+      <div class="cat-arrow">→</div>
+    </div>
+    <div class="cat-card" onclick="openCategory('core')">
+      <div class="cat-icon">⚙️</div>
+      <h3>Core</h3>
+      <p>Core engineering roles & domain preparation</p>
+      <div class="cat-arrow">→</div>
+    </div>
+    <div class="cat-card" onclick="openCategory('analyst')">
+      <div class="cat-icon">📈</div>
+      <h3>Analyst</h3>
+      <p>Data & business analyst roles, Excel, SQL</p>
+      <div class="cat-arrow">→</div>
+    </div>
+    <div class="cat-card" onclick="openCategory('finance')">
+      <div class="cat-icon">💰</div>
+      <h3>Finance</h3>
+      <p>Investment banking, equity research & more</p>
+      <div class="cat-arrow">→</div>
+    </div>
+    <div class="cat-card" onclick="openCategory('professor')">
+      <div class="cat-icon">🎓</div>
+      <h3>Project Under Professor</h3>
+      <p>Departmental research & faculty projects</p>
+      <div class="cat-arrow">→</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ CATEGORY PAGE ══════════════ -->
+<div class="page" id="page-category">
+  <div class="cat-page-header">
+    <div class="tag" id="cat-tag">Category</div>
+    <h2 id="cat-title">Category Title</h2>
+    <p id="cat-desc">Select a section below to explore resources.</p>
+  </div>
+  <div class="sub-grid">
+    <div class="sub-card" onclick="openContent('prepare')">
+      <div class="sub-icon">📋</div>
+      <h4>How to Prepare</h4>
+      <p>Strategy, roadmaps & guidelines</p>
+    </div>
+    <div class="sub-card" onclick="openContent('resources')">
+      <div class="sub-icon">📚</div>
+      <h4>Resources</h4>
+      <p>Links, sheets, books & tools</p>
+    </div>
+    <div class="sub-card" onclick="openContent('cvs')">
+      <div class="sub-icon">📄</div>
+      <h4>Previous Year CVs</h4>
+      <p>Sample CVs for reference</p>
+    </div>
+    <div class="sub-card" onclick="openContent('interviews')">
+      <div class="sub-icon">🎤</div>
+      <h4>Interview Experiences</h4>
+      <p>Real interview stories & tips</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PROFESSOR PAGE ══════════════ -->
+<div class="page" id="page-professor">
+  <div class="cat-page-header">
+    <div class="tag">Research</div>
+    <h2>Project Under Professor</h2>
+    <p>Browse departmental professors offering research projects.</p>
+  </div>
+  <div class="professor-list">
+    <div class="coming-soon">
+      <div class="cs-icon">🎓</div>
+      <h3>Professor List Coming Soon</h3>
+      <p>Names and details will be added here shortly.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ CONTENT PAGE ══════════════ -->
+<div class="page" id="page-content">
+  <div class="content-wrap">
+    <div class="content-header">
+      <div class="tag" id="content-tag">Section</div>
+      <h2 id="content-title">Content Title</h2>
+    </div>
+    <div class="rich-content" id="content-body"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  Internship Resources &bull; Designed by <span>Abhay</span>
+</footer>
+
+<script>
+  // ── STATE ──
+  let currentCategory = null;
+
+  const categoryMeta = {
+    consult:   { name: 'Consult',          tag: 'Consulting',   desc: 'Case prep, frameworks & more.' },
+    tech:      { name: 'Tech / SDE',       tag: 'Technology',   desc: 'DSA, CP and software engineering.' },
+    quant:     { name: 'Quant',            tag: 'Quantitative', desc: 'Puzzles, statistics & trading prep.' },
+    core:      { name: 'Core Engineering', tag: 'Core',         desc: 'Domain-specific engineering resources.' },
+    analyst:   { name: 'Analyst',          tag: 'Analytics',    desc: 'Data, SQL, Excel & business analysis.' },
+    finance:   { name: 'Finance',          tag: 'Finance',      desc: 'IB, equity research & valuations.' },
+    professor: { name: 'Project Under Professor', tag: 'Research', desc: '' },
+  };
+
+  const subMeta = {
+    prepare:    'How to Prepare',
+    resources:  'Resources',
+    cvs:        'Previous Year CVs',
+    interviews: 'Interview Experiences',
+  };
+
+  // ── NAVIGATION ──
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function goHome() {
+    currentCategory = null;
+    setBreadcrumb([]);
+    showPage('page-home');
+  }
+
+  function openCategory(cat) {
+    currentCategory = cat;
+    if (cat === 'professor') {
+      setBreadcrumb([{ label: 'Project Under Professor' }]);
+      showPage('page-professor');
+      return;
+    }
+    const m = categoryMeta[cat];
+    document.getElementById('cat-tag').textContent = m.tag;
+    document.getElementById('cat-title').textContent = m.name;
+    document.getElementById('cat-desc').textContent = m.desc;
+    setBreadcrumb([{ label: m.name, action: () => openCategory(cat) }]);
+    showPage('page-category');
+  }
+
+  function openContent(sub) {
+    const cat = currentCategory;
+    const m = categoryMeta[cat];
+    const subLabel = subMeta[sub];
+    document.getElementById('content-tag').textContent = m.tag + ' · ' + subLabel;
+    document.getElementById('content-title').textContent = subLabel;
+    document.getElementById('content-body').innerHTML = getContent(cat, sub);
+    setBreadcrumb([
+      { label: m.name, action: () => openCategory(cat) },
+      { label: subLabel }
+    ]);
+    showPage('page-content');
+  }
+
+  function setBreadcrumb(items) {
+    const el = document.getElementById('breadcrumb');
+    if (!items.length) { el.innerHTML = ''; return; }
+    let html = `<span class="crumb" onclick="goHome()">Home</span>`;
+    items.forEach((item, i) => {
+      html += `<span class="sep">/</span>`;
+      if (item.action) {
+        html += `<span class="crumb" onclick="(${item.action.toString()})()">${item.label}</span>`;
+      } else {
+        html += `<span>${item.label}</span>`;
+      }
+    });
+    el.innerHTML = html;
+  }
+
+  // ── CONTENT DATA ──
+  function getContent(cat, sub) {
+    if (cat === 'tech' && sub === 'prepare') return techPrepare();
+    if (cat === 'tech' && sub === 'resources') return techResources();
+    return blankState(sub);
+  }
+
+  function blankState(sub) {
+    const labels = {
+      prepare: ['📋', 'How to Prepare', 'Preparation strategy and guidelines will be added here.'],
+      resources: ['📚', 'Resources', 'Curated links, sheets, and tools will be listed here.'],
+      cvs: ['📄', 'Previous Year CVs', 'Sample CVs for reference will be uploaded here.'],
+      interviews: ['🎤', 'Interview Experiences', 'Real interview stories and tips will be shared here.'],
+    };
+    const [icon, title, desc] = labels[sub];
+    return `<div class="blank-state">
+      <div class="bs-icon">${icon}</div>
+      <h3>Content Coming Soon</h3>
+      <p>${desc}</p>
+    </div>`;
+  }
+
+  // ──────────────────────────────────────────
+  // TECH → HOW TO PREPARE
+  // ──────────────────────────────────────────
+  function techPrepare() {
+    return `
+      <h2>The Complete Guide to SDE Preparation</h2>
+
+      <h3>Guidelines for Preparation</h3>
+      <ol>
+        <li>
+          <strong>Preferred Language:</strong> Consider using C++ as your primary language.
+          Some HFT firms mandate C++ for coding rounds.
+        </li>
+
+        <li>
+          <strong>Preparation Strategy (Based on Time):</strong>
+          <ul>
+            <li><strong>More than 3 Months:</strong> Start with CP to build intuition and mathematical skills. Gradually shift to DSA-specific preparation closer to your OAs and Interviews.</li>
+            <li><strong>2–3 Months:</strong> Use the resources below but skip dedicated CP prep (though regular contests are still essential).</li>
+            <li><strong>Less than 1–2 Months:</strong> Focus on Striver's Leetcode sheet and past company Online Assessments (available on Leetcode discussions).</li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>Important Concepts:</strong>
+          <ul>
+            <li>Master OOPS concepts since they are asked in nearly all company interviews. (Use GeeksforGeeks)</li>
+            <li>(Optional) Learn core CS concepts (OS, Networks, DBMS); some firms ask MCQ-based problems in their OAs regarding these concepts.</li>
+          </ul>
+        </li>
+
+        <li>
+          <strong>Don't Skip DSA, even if you are strong in CP:</strong> Companies often ask standard DSA questions in their online assessments and interviews.
+        </li>
+
+        <li>
+          <strong>Mocks:</strong> Practice company-wise mocks on platforms like <a href="#" title="Link to be added">Maang</a> and others.
+        </li>
+      </ol>
+
+      <h3>Treat this Repository as a Bible</h3>
+      <p><a href="#" title="Link to be added">IITD-CSE Internship Season Repository</a></p>
+
+      <h3>CSES Must-Do Topics</h3>
+      <ol>
+        <li>Sorting and Searching</li>
+        <li>Dynamic Programming</li>
+        <li>Graph Algorithms</li>
+        <li>Range Queries</li>
+        <li>Tree Algorithms</li>
+      </ol>
+      <div class="info-box">
+        <p>Approach: Do problems with a solved count of more than 8K (use the CSES helper extension to filter efficiently).</p>
+      </div>
+
+      <h3>Industry Trivia</h3>
+      <ol>
+        <li><strong>Core CS:</strong> DE Shaw and some HFT firms focus heavily on core CS and C++ fundamentals.</li>
+        <li><strong>Inclusivity:</strong> Big firms like Amazon and many startups provide equal opportunities to all branches if your CGPA exceeds 7.</li>
+      </ol>
+
+      <h3>Advice and Motivation</h3>
+      <ol>
+        <li>
+          <strong>Challenges Are Normal:</strong>
+          <ul>
+            <li>Preparing for an SDE interview can be frustrating. There will be days when you feel stuck and see little to no progress. It's important to remember that everyone has a different pace. What matters most is your approach and thought process.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Shortlisting Phase:</strong>
+          <ul>
+            <li>This is the toughest part. Companies often shortlist based on CGPA, branch, and pre-college achievements.</li>
+            <li>Many great companies come after Day 1 and Day 2 (e.g., Wells Fargo, Deutsche Bank, JLR, Microsoft, Tech Mahindra).</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Don't Ignore Quant Prep:</strong>
+          <ul>
+            <li>Even if targeting SDE roles, practice Brainsteller puzzles and Puzzledquant problems. Companies like Goldman Sachs and JPMC include these in aptitude rounds or interviews.</li>
+          </ul>
+        </li>
+      </ol>
+
+      <div class="final-note">
+        <h4>Final Note</h4>
+        <p>The journey is tough, but setbacks are part of the process. Stick to the plan, stay consistent, and trust your preparation. All the best!</p>
+      </div>
+    `;
+  }
+
+  // ──────────────────────────────────────────
+  // TECH → RESOURCES
+  // ──────────────────────────────────────────
+  function techResources() {
+    return `
+      <h3>DSA Prep</h3>
+      <ol>
+        <li><strong>Striver SDE Sheet:</strong> <a href="#" title="Link to be added">Link</a></li>
+        <li><strong>Dynamic Programming, Graphs and Binary Search (A2Z Sheet):</strong> <a href="#" title="Link to be added">Link</a></li>
+        <li><strong>Neetcode Roadmap:</strong> <a href="#" title="Link to be added">Link</a></li>
+        <li>Focus especially on Backtracking (it sets the base for DP).</li>
+        <li>Do Leetcode Daily Problems: Use extensions like <strong>Leetrooms</strong> to create randomized problem sets.</li>
+        <li>If time permits, explore InterviewBit problems (interface can be a challenge).</li>
+      </ol>
+
+      <h3>Competitive Programming (CP)</h3>
+      <ol>
+        <li><strong>TLE 31 Sheets:</strong> <a href="#" title="Link to be added">Link</a></li>
+        <li>Participate in regular contests on <strong>Codeforces</strong> and <strong>CodeChef</strong>
+          <ul>
+            <li>Solve at least Problem C in Div2 and Problem E in Div3.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Optional Advanced CP Resources:</strong>
+          <ul>
+            <li>Problems in the USACO Guide.</li>
+            <li>CP Algorithms: <a href="#" title="Link to be added">Link</a></li>
+            <li>Various ladders such as A2OJ and ACD.</li>
+            <li>Follow YouTube channels like William Lin, Errichto Algorithms, etc. — <a href="#" title="YouTube link to be added">YouTube Playlist</a></li>
+          </ul>
+        </li>
+      </ol>
+
+      <h3>Key Repository</h3>
+      <p><a href="#" title="Link to be added">IITD-CSE Internship Season Repository</a> — Treat this as a Bible for your preparation.</p>
+
+      <h3>CSES Problem Set</h3>
+      <p>Focus on must-do topics: Sorting & Searching, DP, Graph Algorithms, Range Queries, Tree Algorithms.</p>
+      <div class="info-box">
+        <p>Use the <strong>CSES helper extension</strong> to filter problems with a solved count above 8K for maximum efficiency.</p>
+      </div>
+
+      <h3>Mock Interview Platforms</h3>
+      <ul>
+        <li><a href="#" title="Link to be added">Maang</a> — Company-wise mock interviews</li>
+        <li><a href="#" title="Link to be added">Brainsteller</a> — Quant/aptitude puzzles</li>
+        <li><a href="#" title="Link to be added">Puzzledquant</a> — Quant prep</li>
+      </ul>
+    `;
+  }
+</script>
+</body>
+</html>
