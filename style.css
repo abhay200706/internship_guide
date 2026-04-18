@@ -1,69 +1,52 @@
 body {
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
+    font-family: Arial;
     background: #f5f7fa;
+    margin: 0;
 }
 
-/* NAVBAR */
 .navbar {
     background: #1f2d3d;
     color: white;
-    padding: 20px;
     text-align: center;
+    padding: 20px;
 }
 
-.nav-links a {
-    color: #ddd;
-    margin: 0 15px;
-    text-decoration: none;
-}
-
-.nav-links a:hover {
-    color: #00d4ff;
-}
-
-/* SECTIONS */
 .section {
     background: white;
-    margin: 30px auto;
-    padding: 25px;
     width: 80%;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    margin: 25px auto;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 h2 {
     color: #2c3e50;
 }
 
-/* SUB NAV */
-.subnav {
+.accordion {
+    background: #0077cc;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    text-align: left;
     margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.subnav a {
-    margin-right: 15px;
-    text-decoration: none;
-    color: #0077cc;
+.accordion:hover {
+    background: #005fa3;
 }
 
-.subnav a:hover {
-    text-decoration: underline;
-}
-
-/* LINKS */
-a {
-    color: #0077cc;
-}
-
-a:hover {
-    color: #005999;
-}
-
-/* INSIGHT BOX */
-.insight {
+.panel {
+    display: none;
     background: #eef6ff;
     padding: 10px;
-    border-left: 4px solid #0077cc;
-    margin-top: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+a {
+    color: #0077cc;
 }
