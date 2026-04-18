@@ -1,195 +1,433 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Internship Resources</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="navbar">
-    <h1>🚀 Internship Resources</h1>
+<!-- ===== LANDING PAGE ===== -->
+<div class="landing-page" id="landingPage">
+    <div class="landing-header">
+        <h1>🚀 Internship Resources</h1>
+        <p>Your Ultimate Guide to Internship Success</p>
+    </div>
+
+    <div class="cards-container">
+        <!-- Card 1: Consulting -->
+        <div class="card" onclick="showCategory('consulting')">
+            <span class="card-icon">🏢</span>
+            <h2>Consulting</h2>
+            <p>Prepare for management consulting roles</p>
+            <span class="card-arrow">→</span>
+        </div>
+
+        <!-- Card 2: Tech -->
+        <div class="card" onclick="showCategory('tech')">
+            <span class="card-icon">💻</span>
+            <h2>Tech</h2>
+            <p>Master coding and technical interviews</p>
+            <span class="card-arrow">→</span>
+        </div>
+
+        <!-- Card 3: Quant -->
+        <div class="card" onclick="showCategory('quant')">
+            <span class="card-icon">📊</span>
+            <h2>Quant</h2>
+            <p>Ace quantitative finance interviews</p>
+            <span class="card-arrow">→</span>
+        </div>
+
+        <!-- Card 4: Core -->
+        <div class="card" onclick="showCategory('core')">
+            <span class="card-icon">⚙️</span>
+            <h2>Core Engineering</h2>
+            <p>Fundamentals of core engineering</p>
+            <span class="card-arrow">→</span>
+        </div>
+
+        <!-- Card 5: Finance -->
+        <div class="card" onclick="showCategory('finance')">
+            <span class="card-icon">💰</span>
+            <h2>Finance</h2>
+            <p>Excel in finance roles</p>
+            <span class="card-arrow">→</span>
+        </div>
+
+        <!-- Card 6: Analyst -->
+        <div class="card" onclick="showCategory('analyst')">
+            <span class="card-icon">📈</span>
+            <h2>Analyst</h2>
+            <p>Become a data-driven analyst</p>
+            <span class="card-arrow">→</span>
+        </div>
+    </div>
 </div>
 
-<!-- ===== TEMPLATE START (COPY THIS BLOCK FOR EACH CATEGORY) ===== -->
+<!-- ===== CATEGORY PAGES ===== -->
 
-<div class="section">
-    <h2>🏢 Consulting</h2>
+<!-- CONSULTING -->
+<div class="category-page" id="consulting">
+    <button class="back-button" onclick="showLanding()">← Back to Home</button>
+    
+    <div class="category-content">
+        <div class="category-header">
+            <h1>🏢 Consulting</h1>
+            <p>Your complete guide to consulting internships</p>
+        </div>
 
-    <button class="accordion">How to Prepare</button>
-    <div class="panel">
-        <p>Add your preparation strategy here.</p>
-    </div>
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>How to Prepare</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Focus on:</p>
+                <ul>
+                    <li>Case studies and problem-solving frameworks</li>
+                    <li>Business acumen and market knowledge</li>
+                    <li>Communication and presentation skills</li>
+                    <li>Networking with current consultants</li>
+                </ul>
+            </div>
+        </div>
 
-    <button class="accordion">Resources</button>
-    <div class="panel">
-        <ul>
-            <li><a href="#">Add resource link</a></li>
-        </ul>
-    </div>
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Resources</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <ul>
+                    <li><a href="https://www.casecoachapp.com/" target="_blank">Case Coach</a></li>
+                    <li><a href="https://www.preplounge.com/" target="_blank">Prep Lounge</a></li>
+                    <li><a href="https://www.mckinsey.com/careers/" target="_blank">McKinsey Careers</a></li>
+                </ul>
+            </div>
+        </div>
 
-    <button class="accordion">Previous CVs</button>
-    <div class="panel">
-        <ul>
-            <li><a href="#">Add CV link</a></li>
-        </ul>
-    </div>
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Previous CVs</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Add successful consulting intern CVs here</p>
+            </div>
+        </div>
 
-    <button class="accordion">Interview Experiences</button>
-    <div class="panel">
-        <ul>
-            <li><a href="#">Add experience</a></li>
-        </ul>
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Interview Experiences</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Share your consulting interview experiences and learnings</p>
+            </div>
+        </div>
     </div>
 </div>
-
-<!-- ===== TEMPLATE END ===== -->
-
 
 <!-- TECH -->
-<div class="section">
-    <h2>💻 Tech</h2>
+<div class="category-page" id="tech">
+    <button class="back-button" onclick="showLanding()">← Back to Home</button>
+    
+    <div class="category-content">
+        <div class="category-header">
+            <h1>💻 Tech</h1>
+            <p>Ace your tech internship interviews</p>
+        </div>
 
-    <button class="accordion">How to Prepare</button>
-    <div class="panel">
-        <p>DSA + projects + consistency.</p>
-    </div>
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>How to Prepare</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>DSA + Projects + Consistency</p>
+                <ul>
+                    <li>Data Structures & Algorithms</li>
+                    <li>System Design (for senior roles)</li>
+                    <li>Build portfolio projects</li>
+                    <li>Practice coding problems daily</li>
+                </ul>
+            </div>
+        </div>
 
-    <button class="accordion">Resources</button>
-    <div class="panel">
-        <ul>
-            <li><a href="https://leetcode.com">Leetcode</a></li>
-            <li><a href="https://codeforces.com">Codeforces</a></li>
-        </ul>
-    </div>
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Resources</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <ul>
+                    <li><a href="https://leetcode.com" target="_blank">LeetCode</a></li>
+                    <li><a href="https://codeforces.com" target="_blank">Codeforces</a></li>
+                    <li><a href="https://www.interviewbit.com/" target="_blank">InterviewBit</a></li>
+                    <li><a href="https://github.com/" target="_blank">GitHub - Build Your Portfolio</a></li>
+                </ul>
+            </div>
+        </div>
 
-    <button class="accordion">Previous CVs</button>
-    <div class="panel">
-        <p>Add tech CVs.</p>
-    </div>
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Previous CVs</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Add tech internship CVs from successful candidates</p>
+            </div>
+        </div>
 
-    <button class="accordion">Interview Experiences</button>
-    <div class="panel">
-        <p>Add tech interview experiences.</p>
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Interview Experiences</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Share your technical interview experiences and tips</p>
+            </div>
+        </div>
     </div>
 </div>
-
 
 <!-- QUANT -->
-<div class="section">
-    <h2>📊 Quant</h2>
+<div class="category-page" id="quant">
+    <button class="back-button" onclick="showLanding()">← Back to Home</button>
+    
+    <div class="category-content">
+        <div class="category-header">
+            <h1>📊 Quant</h1>
+            <p>Prepare for quantitative finance roles</p>
+        </div>
 
-    <button class="accordion">How to Prepare</button>
-    <div class="panel">
-        <p>Probability + puzzles + speed.</p>
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>How to Prepare</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Probability + Puzzles + Speed</p>
+                <ul>
+                    <li>Advanced probability and statistics</li>
+                    <li>Mathematical puzzles and riddles</li>
+                    <li>Coding in Python/C++</li>
+                    <li>Financial markets knowledge</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Resources</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <ul>
+                    <li>A Practical Guide to Quantitative Finance Interviews</li>
+                    <li>Mathematical Puzzles for Interviews</li>
+                    <li>Probability & Statistics Books</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Previous CVs</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Add quant internship CVs here</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Interview Experiences</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Share quant interview experiences</p>
+            </div>
+        </div>
     </div>
-
-    <button class="accordion">Resources</button>
-    <div class="panel">
-        <p>Add books and links.</p>
-    </div>
-
-    <button class="accordion">Previous CVs</button>
-    <div class="panel"></div>
-
-    <button class="accordion">Interview Experiences</button>
-    <div class="panel"></div>
 </div>
-
 
 <!-- CORE -->
-<div class="section">
-    <h2>⚙️ Core</h2>
+<div class="category-page" id="core">
+    <button class="back-button" onclick="showLanding()">← Back to Home</button>
+    
+    <div class="category-content">
+        <div class="category-header">
+            <h1>⚙️ Core Engineering</h1>
+            <p>Master core engineering fundamentals</p>
+        </div>
 
-    <button class="accordion">How to Prepare</button>
-    <div class="panel">
-        <p>Focus on fundamentals.</p>
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>How to Prepare</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Focus on fundamentals:</p>
+                <ul>
+                    <li>Thermodynamics & Heat Transfer</li>
+                    <li>Fluid Mechanics</li>
+                    <li>Materials Science</li>
+                    <li>Manufacturing Processes</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Resources</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Add relevant textbooks and online courses</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Previous CVs</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Add core engineering CVs</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Interview Experiences</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Share your core engineering interview tips</p>
+            </div>
+        </div>
     </div>
-
-    <button class="accordion">Resources</button>
-    <div class="panel"></div>
-
-    <button class="accordion">Previous CVs</button>
-    <div class="panel"></div>
-
-    <button class="accordion">Interview Experiences</button>
-    <div class="panel"></div>
 </div>
-
 
 <!-- FINANCE -->
-<div class="section">
-    <h2>💰 Finance</h2>
+<div class="category-page" id="finance">
+    <button class="back-button" onclick="showLanding()">← Back to Home</button>
+    
+    <div class="category-content">
+        <div class="category-header">
+            <h1>💰 Finance</h1>
+            <p>Excel in finance internships</p>
+        </div>
 
-    <button class="accordion">How to Prepare</button>
-    <div class="panel">
-        <p>Learn valuation + markets.</p>
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>How to Prepare</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Learn valuation + markets</p>
+                <ul>
+                    <li>Valuation techniques (DCF, Multiples)</li>
+                    <li>Financial statement analysis</li>
+                    <li>Market fundamentals</li>
+                    <li>Excel proficiency</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Resources</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Add finance learning resources and courses</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Previous CVs</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Add finance internship CVs</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Interview Experiences</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Share finance interview experiences</p>
+            </div>
+        </div>
     </div>
-
-    <button class="accordion">Resources</button>
-    <div class="panel"></div>
-
-    <button class="accordion">Previous CVs</button>
-    <div class="panel"></div>
-
-    <button class="accordion">Interview Experiences</button>
-    <div class="panel"></div>
 </div>
-
 
 <!-- ANALYST -->
-<div class="section">
-    <h2>📈 Analyst</h2>
+<div class="category-page" id="analyst">
+    <button class="back-button" onclick="showLanding()">← Back to Home</button>
+    
+    <div class="category-content">
+        <div class="category-header">
+            <h1>📈 Analyst</h1>
+            <p>Become a data-driven analyst</p>
+        </div>
 
-    <button class="accordion">How to Prepare</button>
-    <div class="panel"></div>
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>How to Prepare</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <ul>
+                    <li>SQL and data querying</li>
+                    <li>Data visualization tools (Tableau, Power BI)</li>
+                    <li>Statistical analysis</li>
+                    <li>Business acumen</li>
+                </ul>
+            </div>
+        </div>
 
-    <button class="accordion">Resources</button>
-    <div class="panel"></div>
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Resources</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Add analyst resources and tools</p>
+            </div>
+        </div>
 
-    <button class="accordion">Previous CVs</button>
-    <div class="panel"></div>
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Previous CVs</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Add analyst internship CVs</p>
+            </div>
+        </div>
 
-    <button class="accordion">Interview Experiences</button>
-    <div class="panel"></div>
+        <div class="section">
+            <button class="accordion" onclick="toggleAccordion(this)">
+                <span>Interview Experiences</span>
+                <span class="accordion-icon">▼</span>
+            </button>
+            <div class="panel">
+                <p>Share analyst interview tips</p>
+            </div>
+        </div>
+    </div>
 </div>
-
-
-<!-- INTERNSHIPS -->
-<div class="section">
-    <h2>🎯 Internships</h2>
-
-    <button class="accordion">How to Prepare</button>
-    <div class="panel"></div>
-
-    <button class="accordion">Resources</button>
-    <div class="panel"></div>
-
-    <button class="accordion">Previous CVs</button>
-    <div class="panel"></div>
-
-    <button class="accordion">Interview Experiences</button>
-    <div class="panel"></div>
-</div>
-
-
-<!-- PROJECTS WITH PROF -->
-<div class="section">
-    <h2>🧪 Projects with Professors</h2>
-
-    <button class="accordion">How to Prepare</button>
-    <div class="panel"></div>
-
-    <button class="accordion">Resources</button>
-    <div class="panel"></div>
-
-    <button class="accordion">Previous CVs</button>
-    <div class="panel"></div>
-
-    <button class="accordion">Interview Experiences</button>
-    <div class="panel"></div>
-</div>
-
 
 <script src="script.js"></script>
 
