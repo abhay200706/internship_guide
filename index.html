@@ -141,7 +141,7 @@
       <p>Core engineering &amp; FMCG roles preparation</p>
       <div class="cat-arrow">→</div>
     </div>
-    <div class="cat-card" onclick="openCat('analyst')">
+    <div class="cat-card" onclick="openCat('Finance/analyst')">
       <div class="cat-icon">📈</div><h3>Analyst</h3>
       <p>Data &amp; business analyst roles, Excel, SQL</p>
       <div class="cat-arrow">→</div>
@@ -193,7 +193,7 @@
       <div class="pb-icon">🔬</div>
       <h3>IIT Delhi ChemE Faculty</h3>
       <p>Browse all Chemical Engineering professors — their research areas, office locations, and contact details — on the official department page.</p>
-      <a class="btn-accent" href="https://chemical.iitd.ac.in/faculty" target="_blank" rel="noopener">View All Faculty →</a>
+      <a class="btn-accent" href="https://chemical.iitd.ac.in/faculties/" target="_blank" rel="noopener">View All Faculty →</a>
     </div>
     <div class="soon-note">
       <strong>Project availability sheet coming soon.</strong> A sheet listing professors accepting interns next semester, their research topics, and the number of seats available will be shared here.
@@ -328,6 +328,7 @@ function getContent(cat, sub) {
   if (cat==='consult' && sub==='prepare')   return consultPrep();
   if (cat==='consult' && sub==='resources') return consultRes();
   if (cat==='core'    && sub==='prepare')   return corePrep();
+  if (cat==='analyst'    && sub==='prepare')   return analystPrep();
   return blank(sub);
 }
 
@@ -362,7 +363,7 @@ function techPrep() { return `
     </ul>
   </li>
   <li><strong>Don't Skip DSA, even if you are strong in CP:</strong> Companies often ask standard DSA questions in their online assessments and interviews.</li>
-  <li><strong>Mocks:</strong> Practice company-wise mocks on platforms like <a href="https://www.maang.in/" target="_blank">Maang</a> and others.</li>
+  <li><strong>Mocks:</strong> Practice company-wise mocks on platforms like <a href="https://maang.in/login?returnUrl=/mocks" target="_blank">Maang</a> and others.</li>
 </ol>
 <h3>Treat this Repository as a Bible</h3>
 <p><a href="https://github.com/the-hyp0cr1t3/CC" target="_blank">IITD-CSE Internship Season Repository</a></p>
@@ -538,8 +539,43 @@ function consultRes() { return `
   <li><strong>Case Interviews Cracked</strong> — A standard resource used widely by applicants.</li>
   <li><strong>IIM Ahmedabad Case Book</strong> — Slightly more advanced; great once you have the basics down.</li>
 </ul>
-<p><a href="#" target="_blank">Download case books here</a> (link to be updated)</p>
+<p><a href="https://owncloud.iitd.ac.in/nextcloud/index.php/s/q97gkNsXzyC5wik?dir=undefined&openfile=12489832" target="_blank">Download case books here</a> (link to be updated)</p>
 <div class="ibox"><p>Start with Case Compendium, then move to Case Interviews Cracked, and finally tackle the IIM Ahmedabad Case Book.</p></div>`; }
+
+
+function analystPrep(){
+return `
+<h2>The complete guide for Finance Preparation</h2>
+
+<h3>The Process</h3>
+<p>
+The selection process for finance internships typically involves aptitude tests,
+case studies, and multiple interview rounds (technical + HR).
+Strong analytical thinking and familiarity with financial concepts are expected.
+You may face questions on valuation, corporate finance, and brain teasers.
+Be clear, concise, and practice solving problems under time pressure.
+</p>
+
+<h3>Building an Effective CV</h3>
+<p>
+Highlight finance-related projects, internships, and coursework.
+Showcase your analytical and problem-solving skills.
+Strong CGPA (8+) is generally expected, but relevant experience can compensate.
+Positions of responsibility (PORs), certifications (like CFA Level 1, financial modeling),
+and impactful projects can strengthen your CV.
+</p>
+
+<h3>Preparation Tips</h3>
+<ul>
+<li>Work on aptitude (quant + logical)</li>
+<li>Read finance news daily</li>
+<li>Follow case interview frameworks</li>
+<li>Learn financial statements and Excel modeling</li>
+<li>Participate in competitions like CFA Research Challenge</li>
+</ul>
+`;
+}
+
 
 /* ===== CORE ===== */
 function corePrep() { return `
