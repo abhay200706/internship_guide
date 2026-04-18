@@ -7,108 +7,189 @@
 
 <body>
 
-<!-- NAVBAR -->
 <div class="navbar">
     <h1>🚀 Internship Resources</h1>
-    <div class="nav-links">
-        <a href="#tech">Tech</a>
-        <a href="#quant">Quant</a>
-        <a href="#consult">Consulting</a>
-        <a href="#core">Core</a>
-        <a href="#finance">Finance</a>
-    </div>
 </div>
 
-<!-- TECH -->
-<div class="section" id="tech">
-    <h2>💻 Tech</h2>
-    <ul>
-        <li><a href="https://leetcode.com" target="_blank">Leetcode</a></li>
-        <li><a href="https://codeforces.com" target="_blank">Codeforces</a></li>
-    </ul>
-    <p class="insight">Focus on consistency and DSA patterns.</p>
-</div>
+<!-- ===== TEMPLATE START (COPY THIS BLOCK FOR EACH CATEGORY) ===== -->
 
-<!-- QUANT -->
-<div class="section" id="quant">
-    <h2>📊 Quant</h2>
-    <ul>
-        <li>Heard on the Street</li>
-        <li>Probability & Stats</li>
-    </ul>
-    <p class="insight">Strong probability is the backbone.</p>
-</div>
-
-<!-- CONSULTING -->
-<div class="section" id="consult">
+<div class="section">
     <h2>🏢 Consulting</h2>
 
-    <div class="subnav">
-        <a href="#consult-how">How to Prepare</a>
-        <a href="#consult-resources">Resources</a>
-        <a href="#consult-cv">CVs</a>
-        <a href="#consult-interviews">Interviews</a>
+    <button class="accordion">How to Prepare</button>
+    <div class="panel">
+        <p>Add your preparation strategy here.</p>
+    </div>
+
+    <button class="accordion">Resources</button>
+    <div class="panel">
+        <ul>
+            <li><a href="#">Add resource link</a></li>
+        </ul>
+    </div>
+
+    <button class="accordion">Previous CVs</button>
+    <div class="panel">
+        <ul>
+            <li><a href="#">Add CV link</a></li>
+        </ul>
+    </div>
+
+    <button class="accordion">Interview Experiences</button>
+    <div class="panel">
+        <ul>
+            <li><a href="#">Add experience</a></li>
+        </ul>
     </div>
 </div>
 
-<div class="section" id="consult-how">
-    <h2>📌 How to Prepare</h2>
-    <p>CV shortlisting is the biggest bottleneck. Start early.</p>
+<!-- ===== TEMPLATE END ===== -->
 
-    <h3>Case Prep</h3>
-    <ul>
-        <li>Form a group of 3–4 people</li>
-        <li>Start 1–2 months before interviews</li>
-        <li>Practice guesstimates & profitability</li>
-    </ul>
+
+<!-- TECH -->
+<div class="section">
+    <h2>💻 Tech</h2>
+
+    <button class="accordion">How to Prepare</button>
+    <div class="panel">
+        <p>DSA + projects + consistency.</p>
+    </div>
+
+    <button class="accordion">Resources</button>
+    <div class="panel">
+        <ul>
+            <li><a href="https://leetcode.com">Leetcode</a></li>
+            <li><a href="https://codeforces.com">Codeforces</a></li>
+        </ul>
+    </div>
+
+    <button class="accordion">Previous CVs</button>
+    <div class="panel">
+        <p>Add tech CVs.</p>
+    </div>
+
+    <button class="accordion">Interview Experiences</button>
+    <div class="panel">
+        <p>Add tech interview experiences.</p>
+    </div>
 </div>
 
-<div class="section" id="consult-resources">
-    <h2>📚 Resources</h2>
-    <ul>
-        <li>
-            <a href="https://www.youtube.com" target="_blank">
-                Victor Cheng Playlist
-            </a>
-        </li>
-        <li>IIM Ahmedabad Case Book</li>
-        <li>Case in Point</li>
-    </ul>
+
+<!-- QUANT -->
+<div class="section">
+    <h2>📊 Quant</h2>
+
+    <button class="accordion">How to Prepare</button>
+    <div class="panel">
+        <p>Probability + puzzles + speed.</p>
+    </div>
+
+    <button class="accordion">Resources</button>
+    <div class="panel">
+        <p>Add books and links.</p>
+    </div>
+
+    <button class="accordion">Previous CVs</button>
+    <div class="panel"></div>
+
+    <button class="accordion">Interview Experiences</button>
+    <div class="panel"></div>
 </div>
 
-<div class="section" id="consult-cv">
-    <h2>📄 Previous CVs</h2>
-    <ul>
-        <li><a href="#">Consult CV 1</a></li>
-        <li><a href="#">Consult CV 2</a></li>
-    </ul>
-</div>
-
-<div class="section" id="consult-interviews">
-    <h2>🧠 Interview Experiences</h2>
-    <ul>
-        <li><a href="#">BCG Interview</a></li>
-        <li><a href="#">McKinsey Interview</a></li>
-    </ul>
-</div>
 
 <!-- CORE -->
-<div class="section" id="core">
+<div class="section">
     <h2>⚙️ Core</h2>
-    <ul>
-        <li>CRE (Fogler)</li>
-        <li>Heat Transfer</li>
-    </ul>
+
+    <button class="accordion">How to Prepare</button>
+    <div class="panel">
+        <p>Focus on fundamentals.</p>
+    </div>
+
+    <button class="accordion">Resources</button>
+    <div class="panel"></div>
+
+    <button class="accordion">Previous CVs</button>
+    <div class="panel"></div>
+
+    <button class="accordion">Interview Experiences</button>
+    <div class="panel"></div>
 </div>
 
+
 <!-- FINANCE -->
-<div class="section" id="finance">
+<div class="section">
     <h2>💰 Finance</h2>
-    <ul>
-        <li>Valuation</li>
-        <li>Financial Statements</li>
-    </ul>
+
+    <button class="accordion">How to Prepare</button>
+    <div class="panel">
+        <p>Learn valuation + markets.</p>
+    </div>
+
+    <button class="accordion">Resources</button>
+    <div class="panel"></div>
+
+    <button class="accordion">Previous CVs</button>
+    <div class="panel"></div>
+
+    <button class="accordion">Interview Experiences</button>
+    <div class="panel"></div>
 </div>
+
+
+<!-- ANALYST -->
+<div class="section">
+    <h2>📈 Analyst</h2>
+
+    <button class="accordion">How to Prepare</button>
+    <div class="panel"></div>
+
+    <button class="accordion">Resources</button>
+    <div class="panel"></div>
+
+    <button class="accordion">Previous CVs</button>
+    <div class="panel"></div>
+
+    <button class="accordion">Interview Experiences</button>
+    <div class="panel"></div>
+</div>
+
+
+<!-- INTERNSHIPS -->
+<div class="section">
+    <h2>🎯 Internships</h2>
+
+    <button class="accordion">How to Prepare</button>
+    <div class="panel"></div>
+
+    <button class="accordion">Resources</button>
+    <div class="panel"></div>
+
+    <button class="accordion">Previous CVs</button>
+    <div class="panel"></div>
+
+    <button class="accordion">Interview Experiences</button>
+    <div class="panel"></div>
+</div>
+
+
+<!-- PROJECTS WITH PROF -->
+<div class="section">
+    <h2>🧪 Projects with Professors</h2>
+
+    <button class="accordion">How to Prepare</button>
+    <div class="panel"></div>
+
+    <button class="accordion">Resources</button>
+    <div class="panel"></div>
+
+    <button class="accordion">Previous CVs</button>
+    <div class="panel"></div>
+
+    <button class="accordion">Interview Experiences</button>
+    <div class="panel"></div>
+</div>
+
 
 <script src="script.js"></script>
 
