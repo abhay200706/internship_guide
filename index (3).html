@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Internship Resources</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--bg:#F7F6F2;--surface:#fff;--ink:#1C1C28;--ink-light:#5A5A72;--accent:#2A3F7E;--accent-light:#E8ECF8;--border:#E2E0D8;--gold:#C9972A;--tag-bg:#F0EEE8;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;line-height:1.7;}
+    /* NAV */
+    nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:62px;position:sticky;top:0;z-index:100;gap:12px;}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--ink);cursor:pointer;white-space:nowrap;}
+    .nav-logo span{color:var(--accent);}
+    .breadcrumb{font-size:.78rem;color:var(--ink-light);display:flex;align-items:center;gap:5px;flex-wrap:wrap;overflow:hidden;}
+    .crumb{cursor:pointer;transition:color .2s;white-space:nowrap;}
+    .crumb:hover{color:var(--accent);text-decoration:underline;}
+    .sep{opacity:.4;flex-shrink:0;}
+    /* PAGES */
+    .page{display:none;}
+    .page.active{display:block;animation:fadeUp .35s ease;}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    /* HOME */
+    .home-hero{text-align:center;padding:72px 2rem 48px;}
+    .eyebrow{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:500;}
+    .home-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6vw,4rem);font-weight:700;line-height:1.1;margin-bottom:16px;}
+    .home-hero p{font-size:1rem;color:var(--ink-light);max-width:520px;margin:0 auto;font-weight:300;}
+    .divider{width:60px;height:2px;background:var(--accent);margin:28px auto;border-radius:2px;}
+    .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;max-width:1000px;margin:0 auto;padding:0 2rem 80px;}
+    .cat-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:32px 28px;cursor:pointer;transition:all .25s ease;position:relative;overflow:hidden;}
+    .cat-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);transform:scaleY(0);transform-origin:bottom;transition:transform .25s ease;}
+    .cat-card:hover{border-color:var(--accent);box-shadow:0 8px 32px rgba(42,63,126,.10);transform:translateY(-3px);}
+    .cat-card:hover::before{transform:scaleY(1);}
+    .cat-icon{font-size:1.8rem;margin-bottom:16px;}
+    .cat-card h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;margin-bottom:6px;}
+    .cat-card p{font-size:.82rem;color:var(--ink-light);font-weight:300;}
+    .cat-arrow{position:absolute;right:22px;bottom:20px;font-size:1.1rem;color:var(--accent);opacity:0;transition:opacity .2s,right .2s;}
+    .cat-card:hover .cat-arrow{opacity:1;right:18px;}
+    /* CATEGORY PAGE */
+    .page-header{background:var(--surface);border-bottom:1px solid var(--border);padding:48px 2rem 36px;text-align:center;}
+    .tag-pill{display:inline-block;background:var(--accent-light);color:var(--accent);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:14px;font-weight:500;}
+    .page-header h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);font-weight:700;}
+    .page-header p{color:var(--ink-light);font-size:.9rem;margin-top:8px;font-weight:300;}
+    .sub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;max-width:900px;margin:48px auto;padding:0 2rem 80px;}
+    .sub-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px 24px;cursor:pointer;transition:all .22s ease;text-align:center;}
+    .sub-card:hover{border-color:var(--accent);box-shadow:0 6px 24px rgba(42,63,126,.09);transform:translateY(-2px);}
+    .sub-icon{font-size:1.9rem;margin-bottom:12px;}
+    .sub-card h4{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;margin-bottom:6px;}
+    .sub-card p{font-size:.78rem;color:var(--ink-light);}
+    /* PROFESSOR */
+    .prof-section{max-width:700px;margin:48px auto;padding:0 2rem 80px;}
+    .prof-box{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:36px 32px;text-align:center;}
+    .prof-box .pb-icon{font-size:2.5rem;margin-bottom:16px;}
+    .prof-box h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;margin-bottom:10px;}
+    .prof-box p{font-size:.9rem;color:var(--ink-light);margin-bottom:24px;line-height:1.75;}
+    .btn-accent{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-size:.88rem;font-weight:500;padding:12px 28px;border-radius:8px;transition:opacity .2s;}
+    .btn-accent:hover{opacity:.85;}
+    .soon-note{margin-top:20px;background:var(--tag-bg);border:1px dashed var(--border);border-radius:10px;padding:18px 22px;font-size:.84rem;color:var(--ink-light);text-align:center;}
+    .soon-note strong{color:var(--ink);}
+    /* CONTENT */
+    .content-wrap{max-width:760px;margin:0 auto;padding:48px 2rem 80px;}
+    .content-header{margin-bottom:36px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .content-header h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;line-height:1.2;margin-top:12px;}
+    /* RICH */
+    .rich h2{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:700;margin:36px 0 12px;}
+    .rich h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;margin:28px 0 10px;}
+    .rich h4{font-size:.95rem;font-weight:600;margin:20px 0 8px;}
+    .rich p{font-size:.95rem;margin-bottom:12px;line-height:1.8;}
+    .rich ol,.rich ul{padding-left:24px;margin-bottom:16px;}
+    .rich li{font-size:.93rem;margin-bottom:8px;line-height:1.75;}
+    .rich ul li{list-style:disc;}
+    .rich strong{font-weight:600;}
+    .rich em{font-style:italic;}
+    .rich a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;transition:opacity .2s;}
+    .rich a:hover{opacity:.7;}
+    .ibox{background:var(--accent-light);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;}
+    .ibox p{margin:0;font-size:.9rem;}
+    .fnote{background:var(--tag-bg);border:1px solid var(--border);border-radius:10px;padding:22px 24px;margin-top:32px;}
+    .fnote h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700;margin-bottom:8px;}
+    .fnote p{margin:0;font-size:.9rem;color:var(--ink-light);}
+    /* INTERVIEW CARDS */
+    .company-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:20px;overflow:hidden;}
+    .company-header{padding:18px 24px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:background .2s;}
+    .company-header:hover{background:var(--accent-light);}
+    .company-header h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;margin:0;}
+    .company-meta{font-size:.75rem;color:var(--ink-light);margin-top:2px;}
+    .company-toggle{font-size:1.2rem;color:var(--accent);transition:transform .3s;flex-shrink:0;}
+    .company-body{display:none;padding:0 24px 24px;border-top:1px solid var(--border);}
+    .company-body.open{display:block;}
+    .company-body p{font-size:.93rem;margin-top:16px;margin-bottom:10px;line-height:1.8;}
+    .company-body ul,.company-body ol{padding-left:22px;margin-bottom:12px;}
+    .company-body li{font-size:.91rem;margin-bottom:6px;line-height:1.75;}
+    .company-body ul li{list-style:disc;}
+    .company-body strong{font-weight:600;}
+    .company-body h4{font-size:.9rem;font-weight:600;margin:16px 0 6px;color:var(--accent);}
+    .company-body a{color:var(--accent);text-decoration:underline;}
+    .stat-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+    .stat-chip{background:var(--tag-bg);border:1px solid var(--border);border-radius:20px;padding:4px 12px;font-size:.75rem;color:var(--ink-light);}
+    /* BLANK */
+    .blank{text-align:center;padding:80px 2rem;border:2px dashed var(--border);border-radius:14px;}
+    .blank .bi{font-size:2.5rem;margin-bottom:16px;opacity:.5;}
+    .blank h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--ink-light);}
+    .blank p{font-size:.85rem;color:var(--ink-light);margin-top:8px;}
+    /* FOOTER */
+    footer{background:var(--surface);border-top:1px solid var(--border);text-align:center;padding:24px 2rem;font-size:.8rem;color:var(--ink-light);}
+    footer span{color:var(--accent);font-weight:500;}
+    /* CV CARDS */
+    .cv-intro{font-size:.88rem;color:var(--ink-light);margin-bottom:28px;padding:14px 18px;background:var(--accent-light);border-radius:8px;border-left:3px solid var(--accent);}
+    .cv-section-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;margin:28px 0 14px;color:var(--ink);}
+    .cv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin-bottom:28px;}
+    .cv-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 18px 14px;display:flex;flex-direction:column;gap:10px;transition:all .2s ease;}
+    .cv-card:hover{border-color:var(--accent);box-shadow:0 4px 18px rgba(42,63,126,.09);transform:translateY(-2px);}
+    .cv-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+    .cv-company{font-weight:600;font-size:.95rem;color:var(--ink);line-height:1.3;}
+    .cv-badge{font-size:.64rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0;}
+    .badge-ppo{background:#EAF4EC;color:#2E7D32;border:1px solid #C8E6C9;}
+    .badge-intern{background:var(--accent-light);color:var(--accent);border:1px solid #c5d0ee;}
+    .cv-meta{font-size:.75rem;color:var(--ink-light);}
+    .cv-dl-btn{display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:#fff;text-decoration:none;font-size:.78rem;font-weight:500;padding:7px 14px;border-radius:6px;transition:opacity .2s;width:fit-content;}
+    .cv-dl-btn:hover{opacity:.8;}
+    @media(max-width:600px){
+      nav{padding:0 1rem;}
+      .home-hero{padding:48px 1rem 32px;}
+      .card-grid,.sub-grid{padding:0 1rem 60px;}
+      .content-wrap,.prof-section{padding:28px 1rem 60px;}
+      .nav-logo{font-size:1.1rem;}
+      .cv-grid{grid-template-columns:1fr 1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="goHome()">Internship <span>Resources</span></div>
+  <div class="breadcrumb" id="bc"></div>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="pg-home">
+  <div class="home-hero">
+    <div class="eyebrow">IIT Delhi · ChemE Batch 2024</div>
+    <h1>Internship<br/>Resources</h1>
+    <div class="divider"></div>
+    <p>A student-made guide to help you navigate the internship season — prep tips, resources, CVs, and more.</p>
+  </div>
+  <div class="card-grid">
+    <div class="cat-card" onclick="openCat('consult')">
+      <div class="cat-icon">🤝</div><h3>Consult</h3>
+      <p>Consulting internships, case prep &amp; CV building</p><div class="cat-arrow">→</div>
+    </div>
+    <div class="cat-card" onclick="openCat('tech')">
+      <div class="cat-icon">💻</div><h3>Tech / SDE</h3>
+      <p>Software development, DSA, CP preparation</p><div class="cat-arrow">→</div>
+    </div>
+    <div class="cat-card" onclick="openCat('quant')">
+      <div class="cat-icon">📊</div><h3>Quant</h3>
+      <p>Quant research, probability, puzzles &amp; trading</p><div class="cat-arrow">→</div>
+    </div>
+    <div class="cat-card" onclick="openCat('core')">
+      <div class="cat-icon">⚙️</div><h3>Core</h3>
+      <p>Core engineering &amp; FMCG roles preparation</p><div class="cat-arrow">→</div>
+    </div>
+    <div class="cat-card" onclick="openCat('analyst')">
+      <div class="cat-icon">📈</div><h3>Finance / Analyst</h3>
+      <p>Finance &amp; analyst roles — aptitude, CV &amp; interviews</p><div class="cat-arrow">→</div>
+    </div>
+    <div class="cat-card" onclick="openProf()">
+      <div class="cat-icon">🎓</div><h3>Project Under Professor</h3>
+      <p>Research projects with ChemE faculty</p><div class="cat-arrow">→</div>
+    </div>
+  </div>
+</div>
+
+<!-- CATEGORY -->
+<div class="page" id="pg-cat">
+  <div class="page-header">
+    <div class="tag-pill" id="ct-tag"></div>
+    <h2 id="ct-title"></h2>
+    <p id="ct-desc"></p>
+  </div>
+  <div class="sub-grid">
+    <div class="sub-card" onclick="openSub('prepare')">
+      <div class="sub-icon">📋</div><h4>How to Prepare</h4><p>Strategy, roadmaps &amp; guidelines</p>
+    </div>
+    <div class="sub-card" onclick="openSub('resources')">
+      <div class="sub-icon">📚</div><h4>Resources</h4><p>Links, sheets, books &amp; tools</p>
+    </div>
+    <div class="sub-card" onclick="openSub('cvs')">
+      <div class="sub-icon">📄</div><h4>Previous Year CVs</h4><p>Sample CVs for reference</p>
+    </div>
+    <div class="sub-card" onclick="openSub('interviews')">
+      <div class="sub-icon">🎤</div><h4>Interview Experiences</h4><p>Real interview stories &amp; tips</p>
+    </div>
+  </div>
+</div>
+
+<!-- PROFESSOR -->
+<div class="page" id="pg-prof">
+  <div class="page-header">
+    <div class="tag-pill">Research</div>
+    <h2>Project Under Professor</h2>
+    <p>Find ChemE faculty offering research projects this semester.</p>
+  </div>
+  <div class="prof-section">
+    <div class="prof-box">
+      <div class="pb-icon">🔬</div>
+      <h3>IIT Delhi ChemE Faculty</h3>
+      <p>Browse all Chemical Engineering professors — their research areas, office locations, and contact details — on the official department page.</p>
+      <a class="btn-accent" href="https://chemical.iitd.ac.in/faculty" target="_blank" rel="noopener">View All Faculty →</a>
+    </div>
+    <div class="soon-note"><strong>Project availability sheet coming soon.</strong> A sheet listing professors accepting interns next semester, their research topics, and seats available will be shared here.</div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="page" id="pg-content">
+  <div class="content-wrap">
+    <div class="content-header">
+      <div class="tag-pill" id="co-tag"></div>
+      <h2 id="co-title"></h2>
+    </div>
+    <div class="rich" id="co-body"></div>
+  </div>
+</div>
+
+<footer>Internship Resources · Made for ChemE Batch 2024 · Designed by <span>Abhay Rathor</span></footer>
+
+<script>
+/* ══════════════════════════════════════════
+   STATE
+══════════════════════════════════════════ */
+let curCat = null;
+let isPopping = false; // flag to prevent double pushState on popstate
+
+const CATS = {
+  consult:  {name:'Consult',         tag:'Consulting',    desc:'Case prep, CV building & process overview.'},
+  tech:     {name:'Tech / SDE',      tag:'Technology',    desc:'DSA, CP and software engineering.'},
+  quant:    {name:'Quant',           tag:'Quantitative',  desc:'Puzzles, probability & trading prep.'},
+  core:     {name:'Core Engineering',tag:'Core',          desc:'FMCG & core engineering roles.'},
+  analyst:  {name:'Finance / Analyst',tag:'Finance · Analytics', desc:'Finance & analyst role preparation.'},
+};
+const SUBS = {
+  prepare:   'How to Prepare',
+  resources: 'Resources',
+  cvs:       'Previous Year CVs',
+  interviews:'Interview Experiences',
+};
+
+/* ══════════════════════════════════════════
+   ROUTING — History API for back button
+══════════════════════════════════════════ */
+function pushState(state) {
+  if (!isPopping) history.pushState(state, '');
+}
+
+window.addEventListener('popstate', function(e) {
+  isPopping = true;
+  const s = e.state;
+  if (!s || s.view === 'home') {
+    renderHome();
+  } else if (s.view === 'category') {
+    renderCategory(s.cat);
+  } else if (s.view === 'professor') {
+    renderProfessor();
+  } else if (s.view === 'content') {
+    renderContent(s.cat, s.sub);
+  }
+  isPopping = false;
+});
+
+// Init with home state so back works from first page
+history.replaceState({view:'home'}, '');
+
+/* ══════════════════════════════════════════
+   PAGE SWITCHER
+══════════════════════════════════════════ */
+function show(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ══════════════════════════════════════════
+   BREADCRUMB
+══════════════════════════════════════════ */
+function setBc(items) {
+  const el = document.getElementById('bc');
+  let h = `<span class="crumb" onclick="goHome()">Home</span>`;
+  items.forEach((it,i) => {
+    h += `<span class="sep">/</span>`;
+    if (it.fn) h += `<span class="crumb" onclick="${it.fn}">${it.label}</span>`;
+    else        h += `<span>${it.label}</span>`;
+  });
+  el.innerHTML = h;
+}
+
+/* ══════════════════════════════════════════
+   NAVIGATION FUNCTIONS
+══════════════════════════════════════════ */
+function goHome() {
+  pushState({view:'home'});
+  renderHome();
+}
+function openCat(cat) {
+  pushState({view:'category', cat});
+  renderCategory(cat);
+}
+function openProf() {
+  pushState({view:'professor'});
+  renderProfessor();
+}
+function openSub(sub) {
+  pushState({view:'content', cat:curCat, sub});
+  renderContent(curCat, sub);
+}
+function backToCat() {
+  pushState({view:'category', cat:curCat});
+  renderCategory(curCat);
+}
+
+/* ══════════════════════════════════════════
+   RENDERERS
+══════════════════════════════════════════ */
+function renderHome() {
+  curCat = null;
+  setBc([]);
+  show('pg-home');
+}
+function renderCategory(cat) {
+  curCat = cat;
+  const m = CATS[cat];
+  document.getElementById('ct-tag').textContent = m.tag;
+  document.getElementById('ct-title').textContent = m.name;
+  document.getElementById('ct-desc').textContent = m.desc;
+  setBc([{label:m.name}]);
+  show('pg-cat');
+}
+function renderProfessor() {
+  curCat = 'professor';
+  setBc([{label:'Project Under Professor'}]);
+  show('pg-prof');
+}
+function renderContent(cat, sub) {
+  curCat = cat;
+  const m = CATS[cat];
+  document.getElementById('co-tag').textContent = m.tag + ' · ' + SUBS[sub];
+  document.getElementById('co-title').textContent = SUBS[sub];
+  document.getElementById('co-body').innerHTML = getContent(cat, sub);
+  setBc([
+    {label:m.name, fn:`backToCat()`},
+    {label:SUBS[sub]}
+  ]);
+  show('pg-content');
+}
+
+/* ══════════════════════════════════════════
+   ACCORDION TOGGLE
+══════════════════════════════════════════ */
+function toggle(id) {
+  const body = document.getElementById('body-'+id);
+  const arrow = document.getElementById('arrow-'+id);
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  arrow.textContent = isOpen ? '▾' : '▴';
+}
+
+/* ══════════════════════════════════════════
+   CONTENT ROUTER
+══════════════════════════════════════════ */
+function getContent(cat, sub) {
+  if (cat==='tech'    && sub==='prepare')    return techPrep();
+  if (cat==='tech'    && sub==='resources')  return techRes();
+  if (cat==='tech'    && sub==='interviews') return techInterviews();
+  if (cat==='tech'    && sub==='cvs')        return techCVs();
+  if (cat==='quant'   && sub==='prepare')    return quantPrep();
+  if (cat==='quant'   && sub==='resources')  return quantRes();
+  if (cat==='quant'   && sub==='interviews') return quantInterviews();
+  if (cat==='quant'   && sub==='cvs')        return quantCVs();
+  if (cat==='consult' && sub==='prepare')    return consultPrep();
+  if (cat==='consult' && sub==='resources')  return consultRes();
+  if (cat==='consult' && sub==='cvs')        return consultCVs();
+  if (cat==='core'    && sub==='prepare')    return corePrep();
+  if (cat==='core'    && sub==='cvs')        return coreCVs();
+  if (cat==='analyst' && sub==='prepare')    return analystPrep();
+  if (cat==='analyst' && sub==='cvs')        return analystCVs();
+  return blank(sub);
+}
+
+function blank(sub) {
+  const d = {
+    prepare:   ['📋','Preparation strategy and guidelines will be added here soon.'],
+    resources: ['📚','Curated links, sheets and tools will be listed here soon.'],
+    cvs:       ['📄','Sample CVs for reference will be uploaded here soon.'],
+    interviews:['🎤','Real interview stories and tips will be shared here soon.'],
+  };
+  const [icon,desc] = d[sub]||['📝','Content coming soon.'];
+  return `<div class="blank"><div class="bi">${icon}</div><h3>Content Coming Soon</h3><p>${desc}</p></div>`;
+}
+
+/* helper to build accordion cards */
+function company(id, name, role, content) {
+  return `
+  <div class="company-card">
+    <div class="company-header" onclick="toggle('${id}')">
+      <div><h3>${name}</h3><div class="company-meta">${role}</div></div>
+      <span class="company-toggle" id="arrow-${id}">▾</span>
+    </div>
+    <div class="company-body" id="body-${id}">${content}</div>
+  </div>`;
+}
+
+/* ══════════════════════════════════════════
+   TECH — HOW TO PREPARE
+══════════════════════════════════════════ */
+function techPrep(){return `
+<h2>The Complete Guide to SDE Preparation</h2>
+<h3>Guidelines for Preparation</h3>
+<ol>
+  <li><strong>Preferred Language:</strong> Consider using C++ as your primary language. Some HFT firms mandate C++ for coding rounds.</li>
+  <li><strong>Preparation Strategy (Based on Time):</strong>
+    <ul>
+      <li><strong>More than 3 Months:</strong> Start with CP to build intuition and mathematical skills. Gradually shift to DSA-specific preparation closer to your OAs and Interviews.</li>
+      <li><strong>2–3 Months:</strong> Use the resources below but skip dedicated CP prep (though regular contests are still essential).</li>
+      <li><strong>Less than 1–2 Months:</strong> Focus on Striver's Leetcode sheet and past company Online Assessments (available on Leetcode discussions).</li>
+    </ul>
+  </li>
+  <li><strong>Important Concepts:</strong>
+    <ul>
+      <li>Master OOPS concepts since they are asked in nearly all company interviews. (Use GeeksforGeeks)</li>
+      <li>(Optional) Learn core CS concepts (OS, Networks, DBMS); some firms ask MCQ-based problems in their OAs.</li>
+    </ul>
+  </li>
+  <li><strong>Don't Skip DSA, even if you are strong in CP:</strong> Companies often ask standard DSA questions in online assessments and interviews.</li>
+  <li><strong>Mocks:</strong> Practice company-wise mocks on platforms like <a href="https://www.maang.in/" target="_blank">Maang</a> and others.</li>
+</ol>
+<h3>Treat this Repository as a Bible</h3>
+<p><a href="https://github.com/the-hyp0cr1t3/CC" target="_blank">IITD-CSE Internship Season Repository</a></p>
+<h3>CSES Must-Do Topics</h3>
+<ol><li>Sorting and Searching</li><li>Dynamic Programming</li><li>Graph Algorithms</li><li>Range Queries</li><li>Tree Algorithms</li></ol>
+<div class="ibox"><p>Do problems with a solved count of more than 8K (use the CSES helper extension to filter efficiently).</p></div>
+<h3>Industry Trivia</h3>
+<ol>
+  <li><strong>Core CS:</strong> DE Shaw and some HFT firms focus heavily on core CS and C++ fundamentals.</li>
+  <li><strong>Inclusivity:</strong> Big firms like Amazon and many startups provide equal opportunities to all branches if your CGPA exceeds 7.</li>
+</ol>
+<h3>Advice and Motivation</h3>
+<ol>
+  <li><strong>Challenges Are Normal:</strong><ul><li>Preparing for an SDE interview can be frustrating. There will be days when you feel stuck. What matters most is your approach and thought process.</li></ul></li>
+  <li><strong>Shortlisting Phase:</strong><ul><li>Companies often shortlist based on CGPA, branch, and pre-college achievements.</li><li>Many great companies come after Day 1 and Day 2 (e.g., Wells Fargo, Deutsche Bank, JLR, Microsoft, Tech Mahindra).</li></ul></li>
+  <li><strong>Don't Ignore Quant Prep:</strong><ul><li>Even if targeting SDE roles, practice Brainstellar puzzles and PuzzledQuant problems. Goldman Sachs and JPMC include these in aptitude rounds.</li></ul></li>
+</ol>
+<div class="fnote"><h4>Final Note</h4><p>The journey is tough, but setbacks are part of the process. Stick to the plan, stay consistent, and trust your preparation. All the best!</p></div>`;}
+
+/* ══════════════════════════════════════════
+   TECH — RESOURCES
+══════════════════════════════════════════ */
+function techRes(){return `
+<h3>DSA Prep</h3>
+<ol>
+  <li><strong>Striver SDE Sheet:</strong> <a href="https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/" target="_blank">Link</a></li>
+  <li><strong>A2Z Sheet (DP, Graphs, Binary Search):</strong> <a href="https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/" target="_blank">Link</a></li>
+  <li><strong>Neetcode Roadmap:</strong> <a href="https://neetcode.io/roadmap" target="_blank">Link</a></li>
+  <li>Focus especially on Backtracking (it sets the base for DP).</li>
+  <li>Do Leetcode Daily Problems using extensions like <strong>Leetrooms</strong> for randomized sets.</li>
+  <li>If time permits, explore InterviewBit problems.</li>
+</ol>
+<h3>Competitive Programming (CP)</h3>
+<ol>
+  <li><strong>TLE 31 Sheets:</strong> <a href="https://www.tle-eliminators.com/cp-sheet" target="_blank">Link</a></li>
+  <li>Participate in regular contests on <strong>Codeforces</strong> and <strong>CodeChef</strong><ul><li>Solve at least Problem C in Div2 and Problem E in Div3.</li></ul></li>
+  <li><strong>Optional Advanced CP Resources:</strong><ul><li>USACO Guide problems</li><li>CP Algorithms: <a href="https://cp-algorithms.com/" target="_blank">Link</a></li><li>Ladders such as A2OJ and ACD</li><li>YouTube channels: William Lin, Errichto Algorithms</li></ul></li>
+</ol>
+<h3>Key Repository</h3>
+<p><a href="https://github.com/the-hyp0cr1t3/CC" target="_blank">IITD-CSE Internship Season Repository</a> — Treat this as a Bible for your preparation.</p>
+<h3>Mock Platforms</h3>
+<ul>
+  <li><a href="https://www.maang.in/" target="_blank">Maang</a> — Company-wise mock interviews</li>
+  <li><a href="https://www.brainstellar.com/" target="_blank">Brainstellar</a> — Quant/aptitude puzzles</li>
+  <li><a href="https://www.puzzledquant.com/" target="_blank">PuzzledQuant</a> — Quant prep</li>
+</ul>`;}
+
+/* ══════════════════════════════════════════
+   TECH — INTERVIEW EXPERIENCES
+══════════════════════════════════════════ */
+function techInterviews(){return `
+<p style="color:var(--ink-light);font-size:.88rem;margin-bottom:24px;">Real interview experiences shared by IITD students. Click on any company to read more.</p>
+`+
+company('google','Google','Software Engineering',`
+<h4>Interview Process</h4>
+<ul>
+  <li>Round 1: Screening test — 2 coding questions</li>
+  <li>Round 2: Coding Interview — 1 question (Bit manipulation)</li>
+  <li>Round 3: Coding Interview — 1 question (Graph theory and DP)</li>
+</ul>
+<h4>Tips</h4>
+<ul>
+  <li>Topic-wise practice on InterviewBit (DP, tree traversal, graph theory)</li>
+  <li>Top ~100 questions on Leetcode (Easy and Medium)</li>
+  <li>Codeforces contests (Div2 &amp; Div3) to track improvement and speed</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">11 internship offers</span><span class="stat-chip">CS1, CS5, EE1, MT1, MT6</span><span class="stat-chip">Interview was main criterion</span></div>
+<p><em>Contributed by Vidushi Agarwal</em></p>`)+
+
+company('uber','Uber','Software Engineering',`
+<h4>Written Test</h4>
+<ul>
+  <li>4–5 problems with a partial points system — passing 8/10 test cases gives 80% of the points</li>
+  <li>Difficulty: ~CF 1500–1900 rating. Cutoff around 350/600 points</li>
+  <li>Even sample test cases carry points — print sample outputs for easy brownie points!</li>
+</ul>
+<h4>Interview Rounds</h4>
+<ul>
+  <li><strong>Round 1 — Programming:</strong> Think aloud, explain your approach. Interviewers are helpful and give hints. Problem was similar to LeetCode <em>Bus Routes</em>.</li>
+  <li><strong>Round 2 — High-Level Design:</strong> Implement &amp; design a system. Understand the problem thoroughly. Problem similar to LeetCode <em>Design Movie Rental System</em>.</li>
+  <li><strong>Round 3 — HR:</strong> Projects, knowledge of Uber, conflicts in group work and how you resolved them.</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">3 offers (ME1, MT1, EE1)</span><span class="stat-chip">CGPA cutoff 6.5</span><span class="stat-chip">Strong CP background key</span></div>
+<p><em>Contributed by IITD student</em></p>`)+
+
+company('uber-she','Uber She++','Software Engineering (Women)',`
+<ul>
+  <li>Applied in late February for 2nd year BTech / 3rd year Dual Degree females</li>
+  <li>75 candidates selected out of 2500 applicants from 15 colleges based on a coding test (3 CP problems in 1 hour)</li>
+  <li>Selected candidates were invited to Uber's Hyderabad office — accommodation, travel and food arranged by Uber</li>
+  <li>Final interview: 30 minutes — CV projects, DSA, and HR questions</li>
+  <li>29 out of 75 selected for the internship</li>
+</ul>
+<h4>Tips</h4>
+<ul>
+  <li>Decent knowledge of DSA fundamentals + standard DP, stacks, recursion problems</li>
+  <li>Don't fake your skills/projects on your CV — the interviewer looks at it very carefully</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">29 selected from 75</span><span class="stat-chip">Women-only program</span></div>
+<p><em>Contributed by Ananya Mathur</em></p>`)+
+
+company('atlassian','Atlassian','Software Engineering',`
+<h4>Process</h4>
+<ul>
+  <li>Coding round: 3 questions (doable with CF rating 1400+)</li>
+  <li>Technical interview: Data structures &amp; a CP question (maps implementation)</li>
+  <li>Values &amp; Management round: Questions based on Atlassian's 5 company values — check their website beforehand</li>
+</ul>
+<h4>Tips</h4>
+<ul>
+  <li>Practice DP, Binary Search and graph questions for the coding test</li>
+  <li>Check out Atlassian's core values and incorporate them into your answers</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">5 offers (CS, MnC)</span><span class="stat-chip">CGPA cutoff ~7.5–8</span></div>
+<p><em>Contributed by Aadil Akhtar</em></p>`)+
+
+company('graviton-swe','Graviton Research Capital','Software Engineering',`
+<h4>Process</h4>
+<ul>
+  <li>Single interview round after the test</li>
+  <li>Topics: Bellman-Ford, Binary Search on answer, DP, Combinatorics, C++ OOPS</li>
+  <li>Also asked to talk about one research project</li>
+</ul>
+<h4>Tips</h4>
+<ul>
+  <li>Practice a lot on Codeforces and InterviewBit</li>
+  <li>Polish CS fundamentals and C++/Python knowledge (OOPS &amp; compile time optimizations)</li>
+  <li>Select one area of interest and be really good at it</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">6 offers (EE, CS1, CS5)</span><span class="stat-chip">Strong CP key selection criterion</span></div>
+<p><em>Contributed by Manas Jain &amp; Atif Anwer</em></p>`)+
+
+company('rubrik','Rubrik','Software Engineering',`
+<h4>Process</h4>
+<ul>
+  <li>Round 1: HackerRank coding test (4 questions: 1 Easy, 2 Medium, 1 Hard)</li>
+  <li>Round 2: Interview — 2 questions on paper</li>
+  <li>Round 3: Interview — 2 questions on paper</li>
+  <li>Round 4: HR round — CV discussion</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">3 offers (all CS)</span><span class="stat-chip">CGPA cutoff 8 (not heavily weighted)</span><span class="stat-chip">Coding skills most important</span></div>
+<p><em>Contributed by Ujjwal Mehta</em></p>`)+
+
+company('optiver-swe','Optiver','Software Engineering',`
+<h4>Process</h4>
+<ul>
+  <li><strong>Calculation Games (common with Trading):</strong> 80-in-8 (80 arithmetic MCQs in 8 min) and memory/logic games. Practice: <a href="https://rfqjobs.com/practice/math/optiver-test/" target="_blank">rfqjobs.com</a></li>
+  <li><strong>Coding Test (C++):</strong> 3 questions based on trading problems. OOPs in C++ required. Somewhat lengthy — time management is key.</li>
+  <li><strong>HR Interview:</strong> Personality-focused. Topics: why Optiver, life in Amsterdam, work culture, your CV projects.</li>
+  <li><strong>System Design Interview:</strong> Open-ended. Example: "Design a trading system between Amsterdam and Frankfurt." Think aloud, break the problem into parts, engage with the interviewer.</li>
+  <li><strong>Trading Software Interview:</strong> Write basic pseudocode for a trading problem. Focuses on how you think and communicate.</li>
+</ul>
+<h4>Tips</h4>
+<ul>
+  <li>Get familiar with 80-in-8 and practice</li>
+  <li>Brush up C++ OOPS thoroughly</li>
+  <li>Understand how exchanges, order books, and arbitrage work</li>
+  <li>CGPA not heavily important (cutoff 7.5)</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">5 offers (EE, CS1, CS5)</span><span class="stat-chip">3 PPOs</span><span class="stat-chip">Communication skills very important</span></div>`)+
+
+company('media-net','Media.Net','Software Engineering',`
+<h4>Process</h4>
+<ul>
+  <li>Coding round: 3 tree/graph problems</li>
+  <li>Online interview rounds: 2D-DP &amp; permutations/combinations, then a Trie problem</li>
+  <li>CV project discussion (~25 min)</li>
+  <li>5 CS fundamental questions</li>
+</ul>
+<h4>Tips</h4>
+<ul>
+  <li>Prepare your CV projects thoroughly — the direction of the interview is often shaped by what you've listed</li>
+  <li>The way you proceed to solve a DSA problem is also important, not just the answer</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">1 offer (ME2)</span><span class="stat-chip">No CGPA cutoff</span><span class="stat-chip">CP + projects key criterion</span></div>
+<p><em>Contributed by Hemang Khurana</em></p>`)+
+
+company('nirvana','Nirvana Systems','Software Engineering',`
+<h4>Process</h4>
+<ul>
+  <li>Coding test: 1 problem, multiple test cases. Resembles Leetcode problems. Solvable in given time.</li>
+</ul>
+<h4>Tips</h4>
+<ul>
+  <li>Solve medium and hard Leetcode problems</li>
+  <li>Highly recommend <a href="https://cp-algorithms.com/" target="_blank">cp-algorithms.com</a></li>
+  <li>Give virtual Codeforces contests to improve speed</li>
+  <li>Don't get intimidated by complex data structures — master normal DS first</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">3 offers (CS, MnC)</span><span class="stat-chip">CV discussion &amp; interview important</span></div>
+<p><em>Contributed by Manthan Dalmia</em></p>`)+
+
+company('oracle','Oracle','Project Internship (SWE/DS)',`
+<h4>Process</h4>
+<ul>
+  <li>Coding test &amp; MCQs — includes Python requests API, SQL questions, and general DSA</li>
+  <li>2 Technical interview rounds — Dijkstra code, puzzle</li>
+  <li>HR round — questions like "Who is your role model?"</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">7 offers (MnC, CS5, CS1)</span><span class="stat-chip">CGPA cutoff 7.5</span><span class="stat-chip">Coding Test &gt; Interview &gt; CGPA</span></div>
+<p><em>Contributed by Shivam Madan</em></p>`)+
+
+company('adobe','Adobe','Research Internship',`
+<h4>Process</h4>
+<ul>
+  <li>Round 1: Test — 2 coding problems (1 hard, 1 easy) + MCQs from Brainstellar and similar, probability, Machine Learning</li>
+  <li>Round 2: Interview — discussed project, questions on linear algebra and simple algorithms</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">5 offers (CS1, CS5)</span><span class="stat-chip">Good CGPA + coding skills + interview</span></div>
+<p><em>Contributed by Tanishq Dubey</em></p>`)+
+
+company('samsung-india','Samsung R&D India','Research Internship',`
+<h4>Process</h4>
+<ul>
+  <li>CV shortlisting — 7+ CG usually shortlisted</li>
+  <li>Coding round: 3 questions (Leetcode Easy to Medium difficulty, many solved it in half the given time)</li>
+  <li>Interview: Basic intro, "How would you compute 2^n (n can be -ve)?" (Hint: bit manipulation), questions about your coding round approach</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">~16 offers</span><span class="stat-chip">CS1, CS5, MT, EE1, EE3</span><span class="stat-chip">CGPA cutoff ~7</span></div>
+<p><em>Contributed by Rajat Bharadwaj</em></p>`)+
+
+company('samsung-korea','Samsung Korea','Research Internship (ML)',`
+<h4>Process</h4>
+<ul>
+  <li>CV shortlisting — heavy focus on CGPA and JEE Rank (~50 shortlisted)</li>
+  <li>Coding test — extremely easy question; brute force O(N^5) solution accepted</li>
+  <li>Interview — ML-focused (bagging, boosting, ensemble models, feature transformations). Fill a 2-question form before the interview.</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">4 offers (CS1, EE)</span><span class="stat-chip">Mostly CGPA/JEE Rank/Test based</span></div>
+<p><em>Contributed by Rajat Bharadwaj</em></p>`)+
+
+company('ripik','Ripik.ai','Machine Learning',`
+<h4>Process</h4>
+<ul>
+  <li>HR Interview — CV discussion</li>
+  <li>Technical Interview — Discussion on ML experience and knowledge</li>
+  <li>Group Discussion — 2–3 ML-related problem statements, discuss approach</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">3 offers (CS, EE)</span><span class="stat-chip">Open for CS/MnC/EE</span><span class="stat-chip">CGPA + interview impression</span></div>
+<p><em>Contributed by Revant Vasireddi</em></p>`)+
+
+company('sony','Sony','ML / Data Science Intern — Japan',`
+<h4>Process</h4>
+<ul>
+  <li>Round 1: Essay writing — 3 questions (Why this field? What skills do you have? Why Sony?) — given a few days to write</li>
+  <li>Round 2: 30-minute interview — deep dive into 1 project/internship from your CV; exact technical details like libraries used, dataset generation, etc.</li>
+</ul>
+<p><em>Machine Learning / Data Science intern at Sony Japan</em></p>`)+
+
+company('jaguar','Jaguar Land Rover','Software Engineering',`
+<h4>Process</h4>
+<ul>
+  <li>Coding round — after shortlisting</li>
+  <li>Single interview round: 2 simple coding questions + questions about your resume</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">1 offer (EE1)</span></div>
+<p><em>Contributed by Dhruv Nagpal</em></p>`)
+;}
+
+/* ══════════════════════════════════════════
+   QUANT — HOW TO PREPARE
+══════════════════════════════════════════ */
+function quantPrep(){return `
+<h2>The Complete Guide for Quant Preparation</h2>
+<h3>The Process</h3>
+<p>Brush up your probability theory and start solving problems on <strong>Brainstellar / PuzzledQuant</strong>, then move on to the books. Give plenty of time before you look at hints/solutions. Intuition builds over time.</p>
+<p>Give Codeforces contests regularly — rating doesn't matter much. Company-specific prep (mental math, market making) can be done towards the end of summer.</p>
+<p><strong>HR Round is important and often overlooked.</strong> Do mock interviews with friends and seniors. Look at common HR questions and prepare your answers well.</p>
+<h3>Probability Theory</h3>
+<p>MTL106 is helpful. You can also refer to <em>Introduction to Probability Models</em> by Sheldon Ross. Key topics:</p>
+<ul>
+  <li>Conditional probability, Bayes Theorem (JEE stuff)</li>
+  <li>Random Variables, PDF, CDF, Expected Value, Variance</li>
+  <li>Common distributions (discrete and continuous), Central Limit Theorem</li>
+</ul>
+<h3>Puzzles &amp; Probability Questions</h3>
+<p><strong>The 4 standard resources:</strong> Brainstellar website, <em>Heard on the Street</em>, <em>A Practical Guide to Quantitative Finance Interviews</em> by Xinfeng Zhao, <em>50 Challenging Problems in Probability</em>.</p>
+<div class="ibox"><p>Highly recommend <strong><a href="https://www.puzzledquant.com/" target="_blank">PuzzledQuant</a></strong> — great for tracking progress. Brainstellar is a subset of PuzzledQuant.</p></div>
+<h3>Mental Math</h3>
+<p>Practice regularly using the <a href="https://www.puzzledquant.com/arithmetic" target="_blank">Arithmetic Game on PuzzledQuant</a> — fast calculations matter a lot in market-making and timed rounds.</p>
+<h3>ML (Optional)</h3>
+<p>Refer to <a href="https://www.cse.iitd.ac.in/~parags/teaching/col774/" target="_blank">COL774: Machine Learning — Prof. Parag's Course</a>. Focus on: Supervised Learning, Logistic Regression, Decision Trees, Random Forests.</p>`;}
+
+/* ══════════════════════════════════════════
+   QUANT — RESOURCES
+══════════════════════════════════════════ */
+function quantRes(){return `
+<h3>Probability &amp; Puzzles</h3>
+<ul>
+  <li><a href="https://www.puzzledquant.com/" target="_blank">PuzzledQuant</a> — Best collection of quant interview problems</li>
+  <li><a href="https://www.brainstellar.com/" target="_blank">Brainstellar</a> — Classic puzzles and probability questions</li>
+  <li><em>Heard on the Street</em> — Focus on probability &amp; brainteasers chapters</li>
+  <li><em>A Practical Guide to Quantitative Finance Interviews</em> by Xinfeng Zhao</li>
+  <li><em>50 Challenging Problems in Probability</em></li>
+</ul>
+<h3>Competitive Programming</h3>
+<ul>
+  <li><a href="https://cses.fi/book/book.pdf" target="_blank">Competitive Programmer's Handbook</a></li>
+  <li><a href="https://cp-algorithms.com/" target="_blank">CP-Algorithms</a></li>
+</ul>
+<h3>Mental Math</h3>
+<ul>
+  <li><a href="https://www.puzzledquant.com/arithmetic" target="_blank">Arithmetic Game | PuzzledQuant</a></li>
+</ul>
+<h3>ML (Optional)</h3>
+<ul>
+  <li><a href="https://www.cse.iitd.ac.in/~parags/teaching/col774/" target="_blank">COL774: Machine Learning — Prof. Parag's Course</a></li>
+</ul>
+<h3>Other Resources</h3>
+<ul>
+  <li><a href="https://github.com/Aniruddha-Deb/quant-prep" target="_blank">Aniruddha-Deb/quant-prep</a> — Curated quant prep notes</li>
+  <li>Quant Interview/Test Prep, Internship Season | Chinmay Mittal (search on GitHub)</li>
+</ul>`;}
+
+/* ══════════════════════════════════════════
+   QUANT — INTERVIEW EXPERIENCES
+══════════════════════════════════════════ */
+function quantInterviews(){return `
+<p style="color:var(--ink-light);font-size:.88rem;margin-bottom:24px;">Real quant interview experiences from IITD students. Click on any company to read more.</p>
+`+
+company('jane-street','Jane Street','Trading',`
+<h4>Process</h4>
+<ul>
+  <li>4–5 rounds of interviews after shortlisting</li>
+  <li>Early rounds: multiple simpler probability questions</li>
+  <li>Later rounds: in-depth probability games involving <strong>market making</strong> — estimating a price for a contract and stating what you'll buy or sell it for</li>
+  <li>Example contract: "number of aces in 10 random cards" — gets more complex as interviews progress</li>
+  <li>Not important to be exactly correct; estimation + explaining your thought process is key</li>
+  <li>For complex questions, discover the solution collaboratively with the interviewer</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">6 offers (CS5, MT6, CS1)</span><span class="stat-chip">2nd, 3rd &amp; 4th year students</span><span class="stat-chip">Interviews were main criterion</span></div>
+<p><em>Contributed Anonymously</em></p>`)+
+
+company('optiver-trading','Optiver','Trading',`
+<h4>Process</h4>
+<ul>
+  <li><strong>80-in-8:</strong> 80 arithmetic MCQs in 8 minutes. Practice: <a href="https://rfqjobs.com/practice/math/optiver-test/" target="_blank">rfqjobs.com</a></li>
+  <li><strong>9 Neuro Games:</strong> Memory, decision-making, speed games. (No specific online resources; mobile games help.)</li>
+  <li><strong>Group Discussion (Market Making):</strong> Read the handout and familiarize yourself with terms. Play sample games and build a strategy. Participation matters.</li>
+  <li><strong>Online Interviews (pre-day):</strong> 1-on-1 market making with a trader + puzzles. Be quick on estimates and provide clear reasoning.</li>
+  <li><strong>HR Round:</strong> General chit-chat. Preparing basic HR questions beforehand helps.</li>
+  <li><strong>Interview Day:</strong> Card games, puzzles, market making</li>
+</ul>
+<h4>Market Making Tips</h4>
+<ul>
+  <li>Develop a rough theoretical value (theo) for the contract</li>
+  <li>Bid and ask should be around your theo; adjust based on confidence</li>
+  <li>Adapt your theo based on what trades others are making</li>
+  <li>Don't take heavy long/short positions unless very confident</li>
+  <li>Be quick to react to arbitrage opportunities</li>
+  <li>Practice market making games with friends before the final day</li>
+  <li>Know the terms: bid/ask/offer/yours/mine/quote/trade/spread</li>
+</ul>
+<h4>Group Discussion Tips</h4>
+<ul>
+  <li>Speak even if you don't have the best points — staying quiet doesn't help</li>
+  <li>Adapt to what others are doing, argue why their strategies aren't optimal</li>
+  <li>Trading games rarely have a mathematically perfect strategy in limited time — focus on reasoning</li>
+  <li>Be polite while arguing; explain your thinking</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">5 trading offers (CS1, EE1, MT1)</span><span class="stat-chip">2 PPOs</span><span class="stat-chip">CGPA cutoff 7</span><span class="stat-chip">No branch discrimination</span></div>
+<p><em>Contributed by Kartik Sharma</em></p>`)+
+
+company('quadeye-quant','Quadeye','Quant Research',`
+<h4>Process</h4>
+<ul>
+  <li>No test before the interview — just CV shortlisting (CGPA is a major criterion)</li>
+  <li>3 back-to-back interview rounds:
+    <ul>
+      <li>Round 1: Discrete maths, puzzles, some CP questions</li>
+      <li>Round 2: Probability questions + oral numerical questions</li>
+      <li>Round 3: Similar mix to Rounds 1 &amp; 2</li>
+    </ul>
+  </li>
+  <li>No advanced OOPs, Networks, or C++ system questions</li>
+</ul>
+<h4>Tips</h4>
+<ul>
+  <li>For most quant roles (except Optiver), standard prep: CP, brainteasers, oral numerical, C++ concepts (for systems)</li>
+  <li>Target multiple companies — don't get fixated on one</li>
+  <li>Don't get disheartened if shortlisting seems unfair — it happens</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">15 quant offers (CS1, MT1, CS5)</span><span class="stat-chip">CGPA cutoff 8.5 for shortlisting</span><span class="stat-chip">9+ CGPA + strong scholastics for final offer</span></div>
+<p><em>Contributed Anonymously</em></p>`)+
+
+company('goldman-sachs','Goldman Sachs','Strat / Quant',`
+<h4>Process</h4>
+<ul>
+  <li>Two kinds of interviews: <strong>Technical</strong> (CP-style questions — mostly Graphs/Trees, relatively basic) and <strong>Quant</strong> (probability + Brainstellar-style questions)</li>
+  <li>You'll give either one or both types. Some people had an HR round too.</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">22 offers (BB1, TT1, CS1, CS5, EE1, MT1, MT6…)</span><span class="stat-chip">People with CGPA below 8 also shortlisted</span><span class="stat-chip">CGPA + interview were key</span></div>
+<p><em>Contributed Anonymously</em></p>`)+
+
+company('jp-morgan','JP Morgan','Quant Finance',`
+<h4>Process</h4>
+<ul>
+  <li>Round 1: Resume screening</li>
+  <li>Round 2: Online Test — Probability section + Coding assessment</li>
+  <li>Round 3: 3-round interview:
+    <ul>
+      <li>Round 3a: Probability, DSA, brainteasers</li>
+      <li>Round 3b: OOPs in C++</li>
+      <li>Round 3c: HR round</li>
+    </ul>
+  </li>
+</ul>
+<h4>Tips/Resources</h4>
+<ul>
+  <li><em>A Practical Guide to Quantitative Finance</em> by Xinfeng Zhao</li>
+  <li><em>50 Challenging Problems in Probability</em></li>
+  <li>The Math/Probability section of the online test was the main filtering round</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">3 offers (EE, MT1)</span><span class="stat-chip">Maths/probability section was main filter</span></div>
+<p><em>Contributed Anonymously</em></p>`)+
+
+company('graviton-trading','Graviton Research Capital','Quant Trading',`
+<h4>Process</h4>
+<ul>
+  <li>Resume shortlist → Subjective test → 2 interview rounds</li>
+  <li><strong>The test is the most crucial part</strong> — probably the only HFT with a subjective test</li>
+  <li>Questions cover probability, discrete maths in depth</li>
+  <li>Maths concepts checked thoroughly</li>
+</ul>
+<h4>Prep</h4>
+<ul>
+  <li>Targeted quant companies; covered standard books &amp; sites</li>
+  <li>Asked seniors for mock interviews — very helpful</li>
+  <li>Revised COL106, MTL106, MTL180</li>
+  <li>Attempted firm-specific tests from foreign trading firms available online</li>
+</ul>
+<div class="stat-row"><span class="stat-chip">2 offers (both MnC)</span><span class="stat-chip">CGPA cutoff 8.5</span><span class="stat-chip">Scholastics + test + JEE rank</span></div>
+<p><em>Contributed by Laksh Gupta</em></p>`)+
+
+company('tower-research','Tower Research Capital','Quant Research (Limestone) &amp; Quant Dev (North-Moore)',`
+<h4>About Tower Research</h4>
+<p>Tower Research is divided into several trading teams. <strong>Limestone</strong> (one of the oldest/largest) came for Quant Research; <strong>North-Moore</strong> (newer, smaller) came for Quantitative Developer.</p>
+
+<h4>Round 1 — Test (HackerRank, 1 hr)</h4>
+<ul>
+  <li>3 DSA questions (CF 1600–1800 level: Binary Search, DP, Graph algorithms)</li>
+  <li>Probability/Maths questions (similar to Brainstellar)</li>
+  <li>C++/Python OOPs and Computer Architecture questions</li>
+  <li>DSA section was most important; other sections were "you know it or you don't"</li>
+</ul>
+
+<h4>Round 2 — Interview</h4>
+<ul>
+  <li>Mostly DSA — medium/hard LeetCode questions directly asked</li>
+  <li>Probability puzzles (Medium-Hard Brainstellar level)</li>
+  <li>CV discussion — if you've listed Pandas, expect questions on Pandas</li>
+</ul>
+
+<h4>Round 3 — Interview (CS Core Focus)</h4>
+<ul>
+  <li>Parallel Programming: e.g., compute sum/prefix sum using p threads + time complexity</li>
+  <li>Computer Architecture: given C++ code, identify inefficiency (branch prediction), rewrite efficiently</li>
+  <li>DSA: e.g., sort an extremely large array with limited RAM</li>
+</ul>
+
+<h4>Example Hard Problem</h4>
+<p>Given exchange rates for different currencies, devise an algorithm to detect arbitrage opportunities. (Hint: model as a Graph problem, detect negative cost cycles)</p>
+
+<div class="stat-row"><span class="stat-chip">2 offers (both CS1)</span><span class="stat-chip">Very high CGPA cutoff</span><span class="stat-chip">CGPA + JEE Rank + Interview + Test</span></div>
+<p><em>Contributed Anonymously</em></p>`)
+;}
+
+/* ══════════════════════════════════════════
+   CONSULT
+══════════════════════════════════════════ */
+function consultPrep(){return `
+<h2>The Complete Guide for Consult Preparation</h2>
+<h3>Process Overview</h3>
+<p>The selection process for consulting internships consists of three main stages: <strong>CV Shortlisting, Buddy Rounds, and Offline Interviews.</strong> CV shortlisting is by far the biggest bottleneck — around 50 unique students are shortlisted from a pool of 500+ applicants. Start building your CV early. It should tell a compelling story about your achievements and experiences.</p>
+<h3>Building Your CV</h3>
+<p>A consulting CV is judged via the <strong>'spike' framework</strong> — a 'spike' section is one where you are well above the average applicant. Being above average in at least 3–4 sections is non-negotiable for a shortlist at top firms.</p>
+<h4>CG</h4>
+<ul>
+  <li>CG above 8 is satisfactory for most top firms; 8.5–9 is an ideal spike.</li>
+  <li>A lower CG can be compensated by excelling in other sections.</li>
+</ul>
+<h4>Schols</h4>
+<ul>
+  <li>Institute-level awards (Merit List, Department Rank) and pre-institute achievements (Olympiad ranks, scholarships).</li>
+  <li>Can be built up with conscious effort even if lacking initially.</li>
+</ul>
+<h4>Internships</h4>
+<ul>
+  <li>Corporate, start-up and research interns (offline/online). Multiple internships are highly advised.</li>
+  <li>Offline corporate interns (especially in consulting) or foreign research institutes are particularly valued.</li>
+</ul>
+<h4>PORs</h4>
+<ul>
+  <li>Conveys campus involvement over two years. Continuity matters — it shows progression.</li>
+  <li>3rd year PORs are important. Elected PORs are generally more valuable than nominated ones.</li>
+</ul>
+<h4>ECAs</h4>
+<ul>
+  <li>Organize into 2–3 broad sections to show depth and excellence rather than breadth.</li>
+  <li>Ensure your most valuable achievements are presented well.</li>
+</ul>
+<h3>Buddy Rounds</h3>
+<p>Once shortlisted, the firm allots you buddies — consultants (usually alumni) who conduct case-solving sessions. These sessions are evaluative; firms build a "hotlist" of preferred candidates. Not being on the hotlist doesn't eliminate your chances, but performing well increases your likelihood.</p>
+<h3>Case Prep</h3>
+<ul>
+  <li><strong>Form a Case Group:</strong> Work with 3–4 serious aspirants with diverse networks. Also practice with seniors outside your group.</li>
+  <li>Start 1–2 months before interviews. Begin with guesstimates and profitability, then cover other case types.</li>
+  <li>Practice in pairs, taking turns as interviewer and interviewee. Analyze performance after each case.</li>
+</ul>`;}
+
+function consultRes(){return `
+<h3>Video Resources</h3>
+<ul>
+  <li><a href="https://www.youtube.com/@CaseInterviewsIO" target="_blank">Case Interviews Cracked — YouTube</a> — Overview of case prep by Victor Cheng. Stick to the first few relevant lectures.</li>
+</ul>
+<h3>Case Books</h3>
+<ul>
+  <li><strong>Case Compendium</strong> — Great beginner-friendly starting point</li>
+  <li><strong>Case Interviews Cracked</strong> — Standard resource, widely used</li>
+  <li><strong>IIM Ahmedabad Case Book</strong> — Slightly more advanced; tackle after the above</li>
+</ul>
+<p><a href="#" target="_blank">Download case books here</a> (link to be updated)</p>
+<div class="ibox"><p>Start with Case Compendium, then Case Interviews Cracked, then IIM Ahmedabad Case Book.</p></div>`;}
+
+/* ══════════════════════════════════════════
+   CORE
+══════════════════════════════════════════ */
+function corePrep(){return `
+<h2>The Complete Guide for Core Preparation</h2>
+<h3>The Process</h3>
+<p>The selection process for an FMCG internship typically involves three to four rounds:</p>
+<ul>
+  <li><strong>Application Stage:</strong> Fill out a form detailing your internships, academic achievements, and skills. Some companies include a psychometric test — treat this as a chance to show your authenticity; don't overthink your answers.</li>
+  <li><strong>Group Discussion (GD):</strong> Quality over quantity. Structure your thoughts, contribute meaningfully, and encourage quieter members. Teamwork matters.</li>
+  <li><strong>Interview Stage:</strong><ul>
+    <li><strong>Technical Round:</strong> Understanding of key concepts and your listed projects. Be clear and prepare for follow-up questions.</li>
+    <li><strong>HR Round:</strong> Fit for the company and role. Strengths, weaknesses, and past experiences.</li>
+  </ul></li>
+</ul>
+<div class="ibox"><p>Be confident, know your CV thoroughly, and stay calm under pressure throughout the process.</p></div>
+<h3>Building an Effective CV</h3>
+<ul>
+  <li><strong>Academic Background:</strong> 10th/12th marks, competitive exam achievements (NTSE, KVPY, JEE ranks), certifications.</li>
+  <li><strong>CGPA:</strong> Most FMCG companies require 7–7.5. Wipro prefers 8+. Strong internships and projects can compensate.</li>
+  <li><strong>Internships:</strong> Industry-relevant (manufacturing) preferred. SURA or AI/ML internships help stand out.</li>
+  <li><strong>Projects:</strong> COL Projects or Department projects show versatility.</li>
+  <li><strong>PORs and ECAs:</strong> Emphasize continuity and commitment.</li>
+  <li><strong>Relevant Courses:</strong> List courses aligned with FMCG industry.</li>
+</ul>
+<h3>Building Your Profile (3rd and 4th Semesters)</h3>
+<p>Approach professors for research projects. Do AI/ML projects to differentiate yourself. Strengthen understanding of supply chain operations and data analytics. This balance of practical experience and strong fundamentals gives you an edge.</p>
+<h3>Interview Tips</h3>
+<ul>
+  <li><strong>Technical Round:</strong> Be concise, explain all listed projects in detail. Ask for clarification if a question is unclear. Link every answer to the role you're applying for.</li>
+  <li><strong>HR Round:</strong> Brief but compelling self-introduction. Connect your academic interests and leadership roles to the company's vision.</li>
+</ul>
+<div class="ibox"><p>Confidence and calmness make a significant difference, especially with challenging questions.</p></div>`;}
+
+/* ══════════════════════════════════════════
+   CV HELPER
+══════════════════════════════════════════ */
+function cvCard(company, file, type) {
+  // type: 'ppo' | 'intern'
+  const badge = type==='ppo'
+    ? `<span class="cv-badge badge-ppo">Intern + PPO</span>`
+    : `<span class="cv-badge badge-intern">Internship</span>`;
+  const meta = type==='ppo' ? 'UG · Internship + PPO' : 'UG · Internship Only';
+  return `
+  <div class="cv-card">
+    <div class="cv-card-top">
+      <div class="cv-company">${company}</div>
+      ${badge}
+    </div>
+    <div class="cv-meta">${meta}</div>
+    <a class="cv-dl-btn" href="cvs/${file}" target="_blank" download>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      View CV
+    </a>
+  </div>`;
+}
+
+/* ══════════════════════════════════════════
+   TECH CVs
+══════════════════════════════════════════ */
+function techCVs(){return `
+<p class="cv-intro">📄 These are real CVs from UG students who secured software/tech internships. Names are anonymised. Use these as a reference — do not copy directly.</p>
+<div class="cv-section-title">Internship + PPO</div>
+<div class="cv-grid">
+  ${cvCard('DevRev','tech_DevRev_internship_ppo.pdf','ppo')}
+  ${cvCard('Optiver (Software)','tech_Optiver_internship_ppo.pdf','ppo')}
+  ${cvCard('Fast Retailing Co.','tech_FastRetailing_internship_ppo.pdf','ppo')}
+</div>
+<div class="cv-section-title">Internship Only</div>
+<div class="cv-grid">
+  ${cvCard('Nirvana Systems','tech_Nirvana_internship.pdf','intern')}
+  ${cvCard('UnleashX','tech_UnleashX_internship.pdf','intern')}
+  ${cvCard('Wells Fargo','tech_WellsFargo_internship.pdf','intern')}
+</div>`;}
+
+/* ══════════════════════════════════════════
+   QUANT CVs
+══════════════════════════════════════════ */
+function quantCVs(){return `
+<p class="cv-intro">📄 These are real CVs from UG students who secured quant internships. Use these as a reference — do not copy directly.</p>
+<div class="cv-section-title">Internship + PPO</div>
+<div class="cv-grid">
+  ${cvCard('Optiver (Quant)','quant_Optiver_internship_ppo.pdf','ppo')}
+</div>
+<div class="cv-section-title">Internship Only</div>
+<div class="cv-grid">
+  ${cvCard('Quadeye (CV 1)','quant_Quadeye_internship.pdf','intern')}
+  ${cvCard('Quadeye (CV 2)','quant_Quadeye_2_internship.pdf','intern')}
+</div>`;}
+
+/* ══════════════════════════════════════════
+   CONSULT CVs
+══════════════════════════════════════════ */
+function consultCVs(){return `
+<p class="cv-intro">📄 These are real CVs from UG students who secured consulting internships. Use these as a reference — do not copy directly.</p>
+<div class="cv-section-title">Internship Only</div>
+<div class="cv-grid">
+  ${cvCard('BCG','consult_BCG_internship.pdf','intern')}
+  ${cvCard('McKinsey','consult_McKinsey_internship.pdf','intern')}
+</div>`;}
+
+/* ══════════════════════════════════════════
+   CORE CVs
+══════════════════════════════════════════ */
+function coreCVs(){return `
+<p class="cv-intro">📄 These are real CVs from UG students who secured core/FMCG internships. Use these as a reference — do not copy directly.</p>
+<div class="cv-section-title">Internship + PPO</div>
+<div class="cv-grid">
+  ${cvCard('Nvidia','core_Nvidia_internship_ppo.pdf','ppo')}
+</div>
+<div class="cv-section-title">Internship Only</div>
+<div class="cv-grid">
+  ${cvCard('ITC Ltd.','core_ITC_Ltd_internship.pdf','intern')}
+  ${cvCard('JKG Infratech','core_JKG_Infratech_internship.pdf','intern')}
+  ${cvCard('Piramal Pharma','core_Piramal_Pharma_internship.pdf','intern')}
+  ${cvCard('Texas Instruments','core_Texas_Instruments_internship.pdf','intern')}
+</div>`;}
+
+/* ══════════════════════════════════════════
+   ANALYST CVs
+══════════════════════════════════════════ */
+function analystCVs(){return `
+<p class="cv-intro">📄 These are real CVs from UG students who secured finance/analyst internships. Use these as a reference — do not copy directly.</p>
+<div class="cv-section-title">Internship + PPO</div>
+<div class="cv-grid">
+  ${cvCard('American Express','analyst_AmericanExpress_internship_ppo.pdf','ppo')}
+</div>
+<div class="cv-section-title">Internship Only</div>
+<div class="cv-grid">
+  ${cvCard('MasterCard (AI Garage)','analyst_MasterCard_AI_Garage_internship.pdf','intern')}
+</div>`;}
+
+/* ══════════════════════════════════════════
+   ANALYST / FINANCE
+══════════════════════════════════════════ */
+function analystPrep(){return `
+<h2>The Complete Guide for Finance / Analyst Preparation</h2>
+
+<h3>The Process</h3>
+<p><strong>The Process:</strong> The selection process for finance internships typically involves aptitude tests, case studies, and multiple interview rounds (technical + HR). Strong analytical thinking and familiarity with financial concepts are expected. You may face questions on valuation, corporate finance, and brain teasers. Be clear, concise, and practice solving problems under time pressure.</p>
+
+<h3>Building an Effective CV</h3>
+<p><strong>Building an Effective CV:</strong> Highlight finance-related projects, internships, and coursework. Showcase your analytical and problem-solving skills. Strong CGPA (8+) is generally expected, but relevant experience can compensate. Positions of responsibility (PORs), certifications (like CFA Level 1, financial modeling), and impactful projects can strengthen your CV.</p>
+
+<h3>Preparation Tips</h3>
+<p><strong>Preparation Tips:</strong> Work on aptitude practice (quant + logical), read finance news daily, and follow case interview frameworks. Gain familiarity with financial statements and Excel modeling. Practical exposure through internships or competitions like CFA Research Challenge is highly valued.</p>
+
+<div class="fnote"><h4>Note</h4><p>Finance and Analyst roles often have overlapping skill requirements — strong quant aptitude, analytical thinking, and communication are key across both.</p></div>`;}
+</script>
+</body>
+</html>
